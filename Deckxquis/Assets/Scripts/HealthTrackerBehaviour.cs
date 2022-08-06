@@ -29,11 +29,11 @@ public class HealthTrackerBehaviour : MonoBehaviour
     
     public void heal(int amount) {
         _healthLevel += amount;
-        _healthLevel = Mathf.min(_healthLevel, _maxHealthLevel);
+        _healthLevel = Mathf.Min(_healthLevel, _maxHealthLevel);
     }
     
     public void increaseDefence(int amount) {
         _defenceLevel += amount;
-        _defenceLevel = Mathf.min(_defenceLevel, _maxDefenceLevel);
+        _defenceLevel = Mathf.Min(_defenceLevel, _maxDefenceLevel);
     }
 }
