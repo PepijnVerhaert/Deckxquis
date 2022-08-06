@@ -14,6 +14,58 @@
       "Health": 0
     },
     {
+      "Name": "testArm",
+      "ImageName": "Test/TestArm",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 0,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 0,
+      "Uses": 0,
+      "Health": 0
+    },
+    {
+      "Name": "testArm",
+      "ImageName": "Test/TestArm",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 0,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 0,
+      "Uses": 0,
+      "Health": 0
+    },
+    {
+      "Name": "testBeen",
+      "ImageName": "Test/TestBeen",
+      "_Type": "Leg",
+      "Speed": 0,
+      "EnergyCost": 0,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 0,
+      "Uses": 0,
+      "Health": 0
+    },
+    {
+      "Name": "testBeen",
+      "ImageName": "Test/TestBeen",
+      "_Type": "Leg",
+      "Speed": 0,
+      "EnergyCost": 0,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 0,
+      "Uses": 0,
+      "Health": 0
+    },
+    {
       "Name": "testBeen",
       "ImageName": "Test/TestBeen",
       "_Type": "Leg",
@@ -52,6 +104,33 @@
       "Uses": 0,
       "Health": 0
     },
+    {
+      "Name": "testLijf",
+      "ImageName": "Test/TestLijf",
+      "_Type": "Torso",
+      "Speed": 0,
+      "EnergyCost": 0,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 0,
+      "Uses": 0,
+      "Health": 0
+    },
+    {
+      "Name": "testLijf",
+      "ImageName": "Test/TestLijf",
+      "_Type": "Torso",
+      "Speed": 0,
+      "EnergyCost": 0,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 0,
+      "Uses": 0,
+      "Health": 0
+    },
+
     {
       "Name": "enemy1",
       "ImageName": "Test/TestLijf",

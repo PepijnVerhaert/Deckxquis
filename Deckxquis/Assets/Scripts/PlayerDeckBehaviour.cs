@@ -12,9 +12,19 @@ public class PlayerDeckBehaviour : MonoBehaviour
     void Start()
     {
         _playerCards = new Dictionary<CardType, List<CardProperties>>();
-        _playerCards.Add(CardType.Torso, new List<CardProperties>());
-        _playerCards.Add(CardType.Arm, new List<CardProperties>());
-        _playerCards.Add(CardType.Leg, new List<CardProperties>());
+        _playerCards.Add(
+            CardType.Torso, 
+            new List<CardProperties>(_cardRepository.GetCards(CardType.Torso, 3))
+        );
+        _playerCards.Add(
+            CardType.Arm, 
+            new List<CardProperties>(_cardRepository.GetCards(CardType.Arm, 3))
+        );
+        _playerCards.Add(
+            CardType.Leg, 
+            new List<CardProperties>(_cardRepository.GetCards(CardType.Leg, 3))
+        );
+        // TODO set cards in use
     }
     
     public int CardsLeft(CardType type) 
