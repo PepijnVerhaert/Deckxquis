@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Assertions;
 
 public enum InputState {
     CardSelect,
     ActionSelect,
+    EnemySelect,
     EnemyTurn,
 }
 
@@ -30,16 +32,37 @@ public class GameMangerBehavior : MonoBehaviour
         _gameState = state;
     }
 
+    private string GetLayerMask()
+    {
+        // Layers: "Player", "Enemy", "Picker", "Turn"
+        switch (_gameState)
+        {
+            case InputState.CardSelect:
+                return "Picker";
+            case InputState.ActionSelect:
+                return "Player";
+            case InputState.EnemySelect:
+                return "Enemy";
+            case InputState.EnemyTurn:
+                return "Turn";
+            default:
+                Debug.Log("boze error message!");
+                break;
+        }
+        return null;
+    }
+
     public void Activate(InputAction.CallbackContext callback)
     {
         _ray = _camera.ScreenPointToRay(new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y));
-        _hit = Physics2D.Raycast(_ray.origin, _ray.direction, 1000);
+        _hit = Physics2D.Raycast(_ray.origin, _ray.direction, 1000, LayerMask.NameToLayer(GetLayerMask()));
+
         if (_hit.collider != null)
         {
             _hitObject = _hit.collider.gameObject;
-            // TODO get card and filter by layer
             CardProperties clickedCardProperties = _hitObject.GetComponent<CardBehavior>().Properties;
             Debug.Log("HIT!");
+
             switch (_gameState)
             {
                 case InputState.CardSelect:
