@@ -13,9 +13,9 @@ public class CardPickerBehaviour : MonoBehaviour
     
     private void ClearCards()
     {
-        _cardBehaviourA.clearCardValues();        
-        _cardBehaviourB.clearCardValues();        
-        _cardBehaviourC.clearCardValues();        
+        _cardBehaviourA.Show(CardSide.None);        
+        _cardBehaviourB.Show(CardSide.None);        
+        _cardBehaviourC.Show(CardSide.None);        
     }
     
     private void SetCards(CardProperties[] cardProperties) 
@@ -23,8 +23,8 @@ public class CardPickerBehaviour : MonoBehaviour
         CardBehavior[] cardBehaviors = {_cardBehaviourA, _cardBehaviourB, _cardBehaviourC};
         for (int i = 0; i < cardBehaviors.Length; i++)
         {
-            cardBehaviors[i].setProperties(cardProperties[i]);
-            cardBehaviors[i].setCardValues();
+            cardBehaviors[i].SetProperties(cardProperties[i]);
+            cardBehaviors[i].Show(CardSide.Back);
         }
     }
     

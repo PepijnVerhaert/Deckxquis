@@ -1,15 +1,32 @@
 using UnityEngine;
 
+public enum CardSide {
+    Front,
+    Back,
+    None,
+};
+     
 public class CardBehavior : MonoBehaviour
 {
-    // TYPES
-       
-    public void setProperties(CardProperties properties)
+    public void Show(CardSide side) {
+        switch (side) 
+        {
+            case CardSide.Front:
+            case CardSide.Back:
+            case CardSide.None:
+            default:
+                // TODO show this side
+                break;
+        }
+    }
+      
+    public void SetProperties(CardProperties properties)
     {
         _properties = properties;
+        SetCardSlots();
     }
 
-    public void setCardValues()
+    private void SetCardSlots()
     {
         CardIconSlotFiller slotFiller = GetComponent<CardIconSlotFiller>();
         slotFiller.SetSlotsCorrect();
@@ -28,11 +45,6 @@ public class CardBehavior : MonoBehaviour
         }
     }
     
-    public void clearCardValues() 
-    {
-        return;
-    }
-
     private CardProperties _properties;
     
     public CardProperties Properties { get; }
