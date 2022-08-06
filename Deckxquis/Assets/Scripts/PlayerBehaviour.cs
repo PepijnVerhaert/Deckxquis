@@ -5,34 +5,55 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField] private CardPickerBehaviour _cardPickerBehaviour;
-    [SerializeField] private BodyPartBehavior[] _bodyParts = new BodyPartBehavior[5];
+    [SerializeField] private BodyPartBehavior _head;
+    [SerializeField] private BodyPartBehavior _torso;
+    [SerializeField] private BodyPartBehavior _leftArm;
+    [SerializeField] private BodyPartBehavior _rightArm;
+    [SerializeField] private BodyPartBehavior _leftLeg;
+    [SerializeField] private BodyPartBehavior _rightLeg;
+    
     public int Speed { get => calculateSpeed(); }
-    private CardType _pickingType;
+    private CardBehavior _pickingPart;
     private bool _isPicking = false;
     
     private int calculateSpeed() {
         int totalSpeed = 0;
-        foreach (BodyPartBehavior bodyPart in _bodyParts) {
-            totalSpeed += bodyPart.Speed;
-        }
+        totalSpeed += _head.Speed;
+        totalSpeed += _torso.Speed;
+        totalSpeed += _leftArm.Speed;
+        totalSpeed += _rightArm.Speed;
+        totalSpeed += _leftLeg.Speed;
+        totalSpeed += _rightLeg.Speed;
         return totalSpeed;
     }
      
     public void AddBodyPart(CardProperties cardProperties) {
-        foreach (BodyPartBehavior bodyPart in _bodyParts) {
-            if (bodyPart.IsEmpty && _pickingType == bodyPart.GetCardType) {
-                bodyPart.setCardProperties(cardProperties);
-                _isPicking = true;
-            }
-        }
+        _pickingPart.setCardProperties(cardProperties);
+        _isPicking = true;
     }
     
     public void Update() {
-        foreach (BodyPartBehavior bodyPart in _bodyParts) {
-            if (!_isPicking && bodyPart.IsEmpty) {
-                _pickingType = bodyPart.GetCardType;
+        if (!_isPicking) {
+            if (_torso.IsEmpty) {
+                _pickingPart = _torso;
                 _isPicking = true;
-                _cardPickerBehaviour.PickCardFromDeck(bodyPart.GetCardType);
+                _cardPickerBehaviour.PickCardFromDeck(CardType.Torso);
+            } else if (_leftArm.IsEmpty) {
+                _pickingPart = _leftArm;
+                _isPicking = true;
+                _cardPickerBehaviour.PickCardFromDeck(CardType.Arm);
+            } else if (_rightArm.IsEmpty) {
+                _pickingPart = _rightArm;
+                _isPicking = true;
+                _cardPickerBehaviour.PickCardFromDeck(CardType.Arm);
+            } else if (_leftLeg.IsEmpty) {
+                _pickingPart = _leftLeg;
+                _isPicking = true;
+                _cardPickerBehaviour.PickCardFromDeck(CardType.Leg);
+            } else if (_rightLeg.IsEmpty) {
+                _pickingPart = _rightLeg;
+                _isPicking = true;
+                _cardPickerBehaviour.PickCardFromDeck(CardType.Leg);
             }
         }
     }
