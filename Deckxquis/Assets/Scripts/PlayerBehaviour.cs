@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
     private BodyPartBehavior _pickingPart;
     private bool _isPicking = false;
     private bool _isPickingHead = false;
+    private bool _pickedHead = false;
 
     
     private int calculateSpeed() {
@@ -33,21 +34,20 @@ public class PlayerBehaviour : MonoBehaviour
         if (_isPickingHead) {
             _head.SetCardProperties(cardProperties);
             _isPickingHead = false;
+            _pickedHead = true;
         }  else  {
             _pickingPart.setCardProperties(cardProperties);
         }
         _isPicking = false;
     }
     
-    public void Start() {
-        // _isPickingHead = true;
-        // _isPicking = true;
-        // _cardPickerBehaviour.PickCardFromDeck(CardType.Head);
-    }
-    
     public void Update() {
         if (!_isPicking) {
-            if (_torso.IsEmpty) {
+            if (!_pickedHead)  {
+                _isPickingHead = true;
+                _isPicking = true;
+                _cardPickerBehaviour.PickCardFromDeck(CardType.Head);
+            } else if (_torso.IsEmpty) {
                 _pickingPart = _torso;
                 _isPicking = true;
                 _cardPickerBehaviour.PickCardFromDeck(CardType.Torso);

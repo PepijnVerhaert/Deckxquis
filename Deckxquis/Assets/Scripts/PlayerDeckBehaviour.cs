@@ -13,6 +13,10 @@ public class PlayerDeckBehaviour : MonoBehaviour
     {
         _playerCards = new Dictionary<CardType, List<CardProperties>>();
         _playerCards.Add(
+            CardType.Head, 
+            new List<CardProperties>(_cardRepository.GetCards(CardType.Head, 3))
+        );
+        _playerCards.Add(
             CardType.Torso, 
             new List<CardProperties>(_cardRepository.GetCards(CardType.Torso, 3))
         );
