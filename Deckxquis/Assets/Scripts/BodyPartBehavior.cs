@@ -3,7 +3,15 @@ using System;
 
 public class BodyPartBehavior : MonoBehaviour
 {
-    CardBehavior _cardBehavior;
+    public enum Side
+    {
+        Unassigned,
+        Left,
+        Right,
+    }
+
+    private CardBehavior _cardBehavior;
+    [SerializeField] private Side _cardSide = Side.Unassigned;
     private int _currentUses = -1;
 
     // ACTIONS
@@ -15,7 +23,12 @@ public class BodyPartBehavior : MonoBehaviour
     public Action<float> GiveDefence = (float amount) => {};
     public Action<float> GiveAttack = (float amount) => {};
 
-    public Action BodyPartBroken = () => {};
+    public Action<CardBehavior.CardType, Side> OnBodyPartBroken = (CardBehavior.CardType type, Side side) => {};
+
+    public Side CardSide { get => _cardSide; set => _cardSide = value; }
+
+    public bool IsEmpty { get => _cardBehavior == null; }
+    public CardBehavior.CardType GetCardType { get => _cardBehavior.GetCardType; }
 
     void NewBodyPart(CardBehavior newCardBehvavior)
     {
@@ -39,7 +52,8 @@ public class BodyPartBehavior : MonoBehaviour
 
         if (_currentUses <= 0)
         {
-            BodyPartBroken();
+            OnBodyPartBroken(_cardBehavior.GetCardType, _cardSide);
+            _cardBehavior = null;
         }
     }
 }

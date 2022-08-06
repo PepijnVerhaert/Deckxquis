@@ -3,7 +3,7 @@ using UnityEngine;
 public class CardBehavior : MonoBehaviour
 {
     // TYPES
-    enum CardType
+    public enum CardType
     {
         Head,
         Arm,
@@ -39,5 +39,5 @@ public class CardBehavior : MonoBehaviour
     public int Attack { get => _attack; set => _attack = value; }
     public int Uses { get => _uses; set => _uses = value; }
     public int Health { get => _health; set => _health = value; }
-    private CardType CardType1 { get => _cardType; set => _cardType = value; }
+    public CardType GetCardType { get => _cardType; set => _cardType = value; }
 }
