@@ -6,7 +6,11 @@ public class HeadBehavior : MonoBehaviour
 {
     [SerializeField]
     private CardBehavior _cardBehavior;
-
+    
+    public void SetCardProperties(CardProperties cardProperties) {
+        _cardBehavior.SetProperties(cardProperties);
+    }
+    
     public int MaxHealth
     {
         get { return _cardBehavior.Health; }
