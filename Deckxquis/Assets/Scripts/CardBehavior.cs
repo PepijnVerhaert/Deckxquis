@@ -23,4 +23,5 @@ public class CardBehavior : MonoBehaviour
     public int Uses { get => _properties.Uses; }
     public int Health { get => _properties.Health; }
     public CardType GetCardType { get => _properties.Type; }
+    public string Id { get => _properties.Id; }
 }

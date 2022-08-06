@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
-
     private CardBehavior _cardBehavior;
 
-    int _currentDefence;
-    int _currentHealth;
+    private List<bool> _attackPattern;
+    private int _attackCount;
+
+    private int _currentDefence;
+    private int _currentHealth;
 
     public CardBehavior CardBehavior
     {
@@ -23,6 +25,25 @@ public class EnemyBehavior : MonoBehaviour
 
     public int CurrentDefence { get => _currentDefence; }
     public int CurrentHealth { get => _currentHealth; }
+    public List<bool> AttackPattern { set => _attackPattern = value; }
+
+    public void PlayTurn()
+    {
+        if (_attackPattern.Count != 0)
+        {
+            if (_attackPattern[_attackCount])
+            {
+                Attack();
+            }
+            else
+            {
+                Defend();
+            }
+
+            ++_attackCount;
+            _attackCount %= _attackPattern.Count;
+        }
+    }
 
     public int Attack()
     {
