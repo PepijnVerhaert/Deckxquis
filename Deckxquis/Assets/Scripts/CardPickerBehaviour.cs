@@ -32,7 +32,7 @@ public class CardPickerBehaviour : MonoBehaviour
     private void SetCards(CardProperties[] cardProperties) 
     {
         CardBehavior[] cardBehaviors = {_cardA, _cardB, _cardC};
-        for (int i = 0; i < cardBehaviors.Length; i++)
+        for (int i = 0; i < cardProperties.Length; i++)
         {
             cardBehaviors[i].SetProperties(cardProperties[i]);
             cardBehaviors[i].Show(CardSide.Back);

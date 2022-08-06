@@ -120,7 +120,7 @@
     {
       "Name": "Stompy",
       "ImageName": "Textures/Legs/Stompy",
-      "_Type": "Torso",
+      "_Type": "Leg",
       "Speed": 0,
       "EnergyCost": 2,
       "HealthCost": 1,
