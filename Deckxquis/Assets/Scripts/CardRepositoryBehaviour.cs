@@ -58,6 +58,7 @@ public class CardRepositoryBehaviour : MonoBehaviour
     }
     
     private CardProperties[] GetAvailable(CardType type, List<System.String> pickedIds) {
+        if (_cardsProperties == null) return new CardProperties[0];
         List<CardProperties> available = new List<CardProperties>();
         foreach (CardProperties cardProperties in _cardsProperties)
         {
@@ -100,7 +101,7 @@ public class CardRepositoryBehaviour : MonoBehaviour
         return GetAvailable(type, new List<string>());
     }
 
-    void Start()
+    void Awake()
     {
         loadCards();
     }
