@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    private BodyPartBehavior[] _bodyParts;
+    [SerializeField]
+    private BodyPartBehavior[] _bodyParts = new BodyPartBehavior[5];
     public int Speed { get => calculateSpeed(); }
     
     private int calculateSpeed() {
@@ -14,11 +15,11 @@ public class PlayerBehaviour : MonoBehaviour
         }
         return totalSpeed;
     }
-      
+    
     public void Update() {
         foreach (BodyPartBehavior bodyPart in _bodyParts) {
-            if (bodyPart.IsEmpty)
-                bodyPart.NewBodyPart(CardPickerBehaviour.PickCard(bodyPart.GetCardType));
+            if (bodyPart.IsEmpty) return;
+                // bodyPart.NewBodyPart(CardPickerBehaviour.PickCard(bodyPart.GetCardType));
         }
     }
 }
