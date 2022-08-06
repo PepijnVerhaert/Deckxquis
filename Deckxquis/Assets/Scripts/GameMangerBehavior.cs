@@ -38,7 +38,7 @@ public class GameMangerBehavior : MonoBehaviour
         {
             _hitObject = _hit.collider.gameObject;
             // TODO get card and filter by layer
-            CardProperties clickedCardProperties;
+            CardProperties clickedCardProperties = _hitObject.GetComponent<CardBehavior>().Properties;
             Debug.Log("HIT!");
             switch (_gameState)
             {
