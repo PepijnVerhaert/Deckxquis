@@ -10,6 +10,8 @@ public class CardBehavior : MonoBehaviour
     }
 
     private CardProperties _properties;
+    
+    public CardProperties Properties { get; } 
 
     // PROPERTIES
     public int Speed { get => _properties.Speed; }

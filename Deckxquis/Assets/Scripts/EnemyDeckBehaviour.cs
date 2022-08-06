@@ -8,7 +8,7 @@ public class EnemyDeckBehaviour : MonoBehaviour
     private CardRepositoryBehaviour _cardRepository;
     private CardProperties[] _enemyCardProperties;
     private int _lastEnemyIndex = 0;
-    public int CardsLeft { get => _enemyCardProperties - _lastEnemyIndex; }
+    public int CardsLeft { get => _enemyCardProperties.Length - _lastEnemyIndex; }
     
     void Start()
     {

@@ -57,11 +57,15 @@ public class CardRepositoryBehaviour : MonoBehaviour
         Debug.Log("Found "+_cardsProperties.Length+" total cards");
     }
     
-    private CardProperties[] GetAvailable(CardType type) {
+    private CardProperties[] GetAvailable(CardType type, List<System.String> pickedIds) {
         List<CardProperties> available = new List<CardProperties>();
         foreach (CardProperties cardProperties in _cardsProperties)
         {
-            if (cardProperties.Type == type && !_inPlay.Contains(cardProperties.Id)) 
+            if (
+                cardProperties.Type == type && 
+                !_inPlay.Contains(cardProperties.Id) && 
+                !pickedIds.Contains(cardProperties.Id)
+            ) 
                 available.Add(cardProperties);
         }
         return available.ToArray();
@@ -70,21 +74,30 @@ public class CardRepositoryBehaviour : MonoBehaviour
     public CardProperties[] GetCards(CardType type, int amount) {
         CardProperties[] available;
         List<CardProperties> picked = new List<CardProperties>();
+        List<string> pickedIds = new List<string>();
 
         for (int i = 0; i < amount; i++)
         {
-            available = GetAvailable(type);
+            available = GetAvailable(type, pickedIds);
             if (available.Length == 0) break;
             CardProperties pickedProperties = available[random.Next(available.Length)];
             picked.Add(pickedProperties);
-            _inPlay.Add(pickedProperties.Id);
+            pickedIds.Add(pickedProperties.Id);
         }
         
         return picked.ToArray();
     }
     
+    public void SetInPlay(CardProperties cardProperties) {
+        _inPlay.Add(cardProperties.Id);
+    }
+    
+    public bool GetInPlay(CardProperties cardProperties) {
+        return _inPlay.Contains(cardProperties.Id);
+    }
+    
     public CardProperties[] GetAllCardsInOrder(CardType type) {
-        return GetAvailable(type);
+        return GetAvailable(type, new List<string>());
     }
 
     void Start()
