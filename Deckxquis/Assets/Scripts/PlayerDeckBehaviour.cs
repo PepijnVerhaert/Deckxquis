@@ -48,7 +48,8 @@ public class PlayerDeckBehaviour : MonoBehaviour
         _playerCards.TryGetValue(type, out cardsOfType);
         for (int i = 0; i < amount; i++)
         {
-            CardProperties drawnCard = cardsOfType[random.Next(cardsOfType.Count)];
+            if (cardsOfType.Count == 0) break;
+            CardProperties drawnCard = cardsOfType[random.Next(cardsOfType.Count -1)];
             cardsOfType.Remove(drawnCard);
             drawn.Add(drawnCard);
         }
