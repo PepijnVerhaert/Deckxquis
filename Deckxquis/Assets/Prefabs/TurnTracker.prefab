@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8053032338672385220}
+  - component: {fileID: 2824503736141850900}
   m_Layer: 0
   m_Name: TurnTracker
   m_TagString: Untagged
@@ -30,3 +31,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2824503736141850900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553373460463960413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae30cfe6d69928843a195638d713411c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerBehaviour: {fileID: 0}
+  _enemyBehaviour: {fileID: 0}

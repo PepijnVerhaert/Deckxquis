@@ -45,7 +45,7 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    public int Attack()
+    private int Attack()
     {
         if (!IsAlive()) return 0;
         _currentDefence = 0;
@@ -53,7 +53,7 @@ public class EnemyBehavior : MonoBehaviour
         return _cardBehavior.Attack;
     }
 
-    public void Defend()
+    private void Defend()
     {
         if (!IsAlive()) return;
         _currentDefence = _cardBehavior.Defence;
