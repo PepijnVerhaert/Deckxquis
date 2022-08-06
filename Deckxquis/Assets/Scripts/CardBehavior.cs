@@ -9,9 +9,28 @@ public class CardBehavior : MonoBehaviour
         _properties = properties;
     }
 
+    public void setCardValues()
+    {
+        CardIconSlotFiller slotFiller = GetComponent<CardIconSlotFiller>();
+        slotFiller.SetSlotsCorrect();
+        switch (GetCardType)
+        {
+            case CardType.Arm:
+            case CardType.Enemy:
+                slotFiller.SetSlotsToCardTop(true);
+                break;
+            case CardType.Torso:
+            case CardType.Leg:
+                slotFiller.SetSlotsToCardTop(false);
+                break;
+            default:
+                break;
+        }
+    }
+
     private CardProperties _properties;
     
-    public CardProperties Properties { get; } 
+    public CardProperties Properties { get; }
 
     // PROPERTIES
     public int Speed { get => _properties.Speed; }
@@ -24,4 +43,5 @@ public class CardBehavior : MonoBehaviour
     public int Health { get => _properties.Health; }
     public CardType GetCardType { get => _properties.Type; }
     public string Id { get => _properties.Id; }
+    public string ImageName { get => _properties.ImageName; }
 }

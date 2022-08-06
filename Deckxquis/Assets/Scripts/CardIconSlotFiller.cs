@@ -44,6 +44,16 @@ public class CardIconSlotFiller : MonoBehaviour
         CardBehavior cardBehavior = GetComponent<CardBehavior>();
         if (cardBehavior == null) return;
 
+        if(cardBehavior.GetCardType == CardType.Head)
+        {
+            _slots.SetActive(false);
+            return;
+        }
+        else
+        {
+            _slots.SetActive(true);
+        }
+
         //set cost
         int healthCost = cardBehavior.HealthCost;
         int energyCost = cardBehavior.EnergyCost;
