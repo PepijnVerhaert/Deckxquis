@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HeadBehavior : MonoBehaviour
 {
+    [SerializeField]
     private CardBehavior _cardBehavior;
 
     public int MaxHealth

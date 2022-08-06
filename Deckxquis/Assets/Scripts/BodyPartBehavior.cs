@@ -10,6 +10,7 @@ public class BodyPartBehavior : MonoBehaviour
         Right,
     }
 
+    [SerializeField]
     private CardBehavior _cardBehavior;
     [SerializeField] private Side _cardSide = Side.Unassigned;
     private int _currentUses = -1;
@@ -28,7 +29,7 @@ public class BodyPartBehavior : MonoBehaviour
     public int Speed { get => _cardBehavior.Speed; }
     public Side CardSide { get => _cardSide; set => _cardSide = value; }
 
-    public bool IsEmpty { get => _cardBehavior.Uses <= 0; }
+    public bool IsEmpty { get => _cardBehavior.Properties == null || _cardBehavior.Uses <= 0; }
     public CardType GetCardType { get => _cardBehavior.GetCardType; }
     
     public void setCardProperties(CardProperties cardProperties) {

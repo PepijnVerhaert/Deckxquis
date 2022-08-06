@@ -1924,12 +1924,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01064f85bd18ad44fb9765099f555699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frontSlots: {fileID: 0}
-  _frontCostSlots: []
-  _frontGainSlots: []
-  _backCostSlots: []
-  _backGainSlots: []
-  _backSpeedSlots: []
+  _frontSlots: {fileID: 8470882308366635361}
+  _frontCostSlots:
+  - {fileID: 6958442076111723044}
+  - {fileID: 7269605168752944386}
+  - {fileID: 4519279617381379008}
+  - {fileID: 6094223061057776187}
+  - {fileID: 4589002160619067491}
+  - {fileID: 4178981714542859213}
+  _frontGainSlots:
+  - {fileID: 1844598762298158989}
+  - {fileID: 5270770460489067972}
+  - {fileID: 6032338304036008722}
+  - {fileID: 7473573582347489680}
+  - {fileID: 30731416204630497}
+  - {fileID: 155527059311653904}
+  _backCostSlots:
+  - {fileID: 4038694822922392524}
+  - {fileID: 7701855411871750999}
+  - {fileID: 7002108228258450798}
+  - {fileID: 5800312970521806613}
+  - {fileID: 4620296058215170166}
+  - {fileID: 8131275323274560679}
+  _backGainSlots:
+  - {fileID: 211845092948864256}
+  - {fileID: 7932329960360638649}
+  - {fileID: 5249362505024462767}
+  - {fileID: 2626014948604673053}
+  - {fileID: 5155358379273801515}
+  - {fileID: 440916470650971092}
+  _backSpeedSlots:
+  - {fileID: 5599404532027394051}
+  - {fileID: 1439082447329412468}
+  - {fileID: 4121314603417153714}
   _attackSprite: {fileID: 21300000, guid: 75eacc5bf4aa2104baa6cf933a472557, type: 3}
   _energySprite: {fileID: 21300000, guid: 23af112cd3ad03e448fd7399bfd45c9e, type: 3}
   _healthSprite: {fileID: 21300000, guid: 46a2f323acb9a70438b4cc0b28ec32c6, type: 3}
