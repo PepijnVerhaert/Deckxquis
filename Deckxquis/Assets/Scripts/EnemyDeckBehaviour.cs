@@ -15,15 +15,13 @@ public class EnemyDeckBehaviour : MonoBehaviour
         _enemyCardProperties = _cardRepository.GetAllCardsInOrder(CardType.Enemy);
     }
     
-    public CardBehavior[] DrawCards(int amount) {
-        List<CardBehavior> drawn = new List<CardBehavior>();
+    public CardProperties[] DrawCards(int amount) {
+        List<CardProperties> drawn = new List<CardProperties>();
         for (int i = 0; i < amount; i++)
         {
             int nextIndex = _lastEnemyIndex + i;
             if (nextIndex == _enemyCardProperties.Length) break;
-            CardBehavior newCardBehaviour = new CardBehavior();
-            newCardBehaviour.setProperties(_enemyCardProperties[nextIndex]);
-            drawn.Add(newCardBehaviour);
+            drawn.Add(_enemyCardProperties[nextIndex]);
         }
         return drawn.ToArray();
     }
