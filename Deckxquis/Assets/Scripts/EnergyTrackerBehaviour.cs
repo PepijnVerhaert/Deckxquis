@@ -20,7 +20,7 @@ public class EnergyTrackerBehaviour : MonoBehaviour
                 _extraEnergyLevel -= amount;
             }
         } else {
-            _energyLevel -= amount;
+            _baseEnergyLevel -= amount;
         }
     }
     
