@@ -12,6 +12,9 @@ public class HealthTrackerBehaviour : MonoBehaviour
     [SerializeField]
     TokenBehavior[] _healthTokenBehaviors;
 
+    [SerializeField]
+    TokenBehavior[] _defenceTokenBehaviors;
+
     public int HealthLevel { get => _healthLevel; }
     public int DefenceLevel { get => _defenceLevel; }
     public int MaxHealthLevel 
@@ -36,6 +39,7 @@ public class HealthTrackerBehaviour : MonoBehaviour
             _healthLevel -= amount;
         }
         SetHealthTokenAvailability();
+        SetDefenceTokenVisibility();
     }
     
     public void heal(int amount) {
@@ -47,6 +51,13 @@ public class HealthTrackerBehaviour : MonoBehaviour
     public void increaseDefence(int amount) {
         _defenceLevel += amount;
         _defenceLevel = Mathf.Min(_defenceLevel, _maxDefenceLevel);
+        SetDefenceTokenVisibility();
+    }
+
+    public void removeDefence()
+    {
+        _defenceLevel = 0;
+        SetDefenceTokenVisibility();
     }
 
     private void SetHealthTokenVisibility()
@@ -57,6 +68,17 @@ public class HealthTrackerBehaviour : MonoBehaviour
             if (i < _maxHealthLevel)
                 visible = true;
             _healthTokenBehaviors[i].SetVisibility(visible);
+        }
+    }
+
+    private void SetDefenceTokenVisibility()
+    {
+        for (int i = 0; i < _defenceTokenBehaviors.Length; i++)
+        {
+            bool visible = false;
+            if (i < _defenceLevel)
+                visible = true;
+            _defenceTokenBehaviors[i].SetVisibility(visible);
         }
     }
 
