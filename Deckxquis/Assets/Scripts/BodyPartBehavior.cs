@@ -31,7 +31,7 @@ public class BodyPartBehavior : MonoBehaviour
     public bool IsEmpty { get => _cardBehavior == null; }
     public CardBehavior.CardType GetCardType { get => _cardBehavior.GetCardType; }
 
-    void NewBodyPart(CardBehavior newCardBehvavior)
+    public void NewBodyPart(CardBehavior newCardBehvavior)
     {
         if (_currentUses <= 0)
         {
