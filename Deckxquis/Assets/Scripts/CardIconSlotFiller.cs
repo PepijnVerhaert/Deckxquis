@@ -191,19 +191,32 @@ public class CardIconSlotFiller : MonoBehaviour
             }
         }
 
-        int speed = cardBehavior.Speed;
-        for (int i = 0; i < _backSpeedSlots.Length; i++)
+        if (cardBehavior.GetCardType == CardType.Head)
         {
-            if (speed > 0)
+            int speed = cardBehavior.Speed;
+            for (int i = 0; i < _backSpeedSlots.Length; i++)
             {
-                _backSpeedSlots[i].enabled = true;
-                --speed;
+                if (speed > 0)
+                {
+                    _backSpeedSlots[i].enabled = true;
+                    --speed;
+                }
+                else
+                {
+                    _backSpeedSlots[i].enabled = false;
+                }
             }
-            else
+
+            //DISABLE USE COUNT
+        }
+        else
+        {
+            for (int i = 0; i < _backSpeedSlots.Length; i++)
             {
                 _backSpeedSlots[i].enabled = false;
             }
+
+            //SHOW USE COUNT
         }
     }
-
 }
