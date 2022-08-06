@@ -15,7 +15,20 @@ public class CardBehavior : MonoBehaviour
     Sprite _backImage;
 
     [SerializeField]
-    Sprite _emptyImage;
+    Sprite _headBackImage;
+
+    [SerializeField]
+    Sprite _armBackImage;
+
+    [SerializeField]
+    Sprite _torsoBackImage;
+
+    [SerializeField]
+    Sprite _legBackImage;
+
+    [SerializeField]
+    Sprite _enemyBackImage;
+
 
 
     public void Show(CardSide side) {
@@ -44,7 +57,28 @@ public class CardBehavior : MonoBehaviour
 
     private void SetCardVisuals()
     {
-        var sp = Resources.Load("SpriteFolder/abc") as Sprite;
+        _frontImage = Resources.Load<Sprite>(_properties.ImageName);
+
+        switch (_properties.Type)
+        {
+            case CardType.Head:
+                _backImage = _headBackImage;
+                break;
+            case CardType.Arm:
+                _backImage = _armBackImage;
+                break;
+            case CardType.Torso:
+                _backImage = _torsoBackImage;
+                break;
+            case CardType.Leg:
+                _backImage = _legBackImage;
+                break;
+            case CardType.Enemy:
+                _backImage = _enemyBackImage;
+                break;
+            default:
+                break;
+        }
 
         CardIconSlotFiller slotFiller = GetComponent<CardIconSlotFiller>();
         slotFiller.SetSlotsCorrect();
