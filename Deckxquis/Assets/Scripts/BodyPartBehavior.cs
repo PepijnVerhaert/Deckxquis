@@ -24,12 +24,17 @@ public class BodyPartBehavior : MonoBehaviour
     public Action<float> GiveAttack = (float amount) => {};
 
     public Action<CardType, Side> OnBodyPartBroken = (CardType type, Side side) => {};
-
+    
     public int Speed { get => _cardBehavior.Speed; }
     public Side CardSide { get => _cardSide; set => _cardSide = value; }
 
     public bool IsEmpty { get => _cardBehavior == null; }
     public CardType GetCardType { get => _cardBehavior.GetCardType; }
+    
+    public void setCardProperties(CardProperties cardProperties) {
+        _cardBehavior.SetProperties(cardProperties);
+        _cardBehavior.Show(global::CardSide.Front);
+    }
 
     public void NewBodyPart(CardBehavior newCardBehvavior)
     {
