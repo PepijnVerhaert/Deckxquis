@@ -76,5 +76,6 @@ public class CardPickerBehaviour : MonoBehaviour
                 _context = PickContext.None;
                 break;
         }
+        ClearCards();
     }
 }
