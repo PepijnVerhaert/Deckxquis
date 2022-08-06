@@ -10,7 +10,7 @@ public class PlayerBehaviour : MonoBehaviour
     private int calculateSpeed() {
         int totalSpeed = 0;
         foreach (BodyPartBehavior bodyPart in _bodyParts) {
-            totalSpeed += bodyPart.GetSpeed;
+            totalSpeed += bodyPart.Speed;
         }
         return totalSpeed;
     }
