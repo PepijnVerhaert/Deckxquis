@@ -96,12 +96,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardPickerBehaviour: {fileID: 0}
-  _head: {fileID: 0}
-  _torso: {fileID: 0}
-  _leftArm: {fileID: 0}
-  _rightArm: {fileID: 0}
-  _leftLeg: {fileID: 0}
-  _rightLeg: {fileID: 0}
+  _head: {fileID: 8577092357324459976}
+  _torso: {fileID: 4551144850101783585}
+  _leftArm: {fileID: 2656352209003331121}
+  _rightArm: {fileID: 6272241097635979506}
+  _leftLeg: {fileID: 6572225388060610309}
+  _rightLeg: {fileID: 8112938049952208495}
 --- !u!1 &3541780748814830205
 GameObject:
   m_ObjectHideFlags: 0
