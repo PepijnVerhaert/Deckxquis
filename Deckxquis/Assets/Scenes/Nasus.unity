@@ -714,10 +714,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2357395133895377616, guid: 661c6f73c76664446aada219986e5e00, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a6bdc3815de1e2478d12e97ddeb118c, type: 3}
     - target: {fileID: 2539370651206252008, guid: 661c6f73c76664446aada219986e5e00, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 3311703908238989074, guid: 661c6f73c76664446aada219986e5e00, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7879ded29d03f7648b573082bbd2bbf8, type: 3}
+    - target: {fileID: 4341783315867127246, guid: 661c6f73c76664446aada219986e5e00, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1889fe6ef728e3a448b1acf13421e092, type: 3}
+    - target: {fileID: 5569201187680553605, guid: 661c6f73c76664446aada219986e5e00, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: edb9e2ac78ed19640ab27230a3d1f412, type: 3}
+    - target: {fileID: 7108251927900964790, guid: 661c6f73c76664446aada219986e5e00, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2668f1e4bf316ec3ab8deeea4a5ba2be, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 661c6f73c76664446aada219986e5e00, type: 3}
 --- !u!1001 &1242237037
