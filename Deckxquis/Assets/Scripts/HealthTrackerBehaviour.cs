@@ -10,7 +10,7 @@ public class HealthTrackerBehaviour : MonoBehaviour
     private int _defenceLevel;
 
     [SerializeField]
-    HealthTokenBehavior[] _healthTokenBehaviors;
+    TokenBehavior[] _healthTokenBehaviors;
 
     public int HealthLevel { get => _healthLevel; }
     public int DefenceLevel { get => _defenceLevel; }

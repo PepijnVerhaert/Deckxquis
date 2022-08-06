@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthTokenBehavior : MonoBehaviour
+public class TokenBehavior : MonoBehaviour
 {
     [SerializeField]
     GameObject _visual = null;
