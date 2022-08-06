@@ -23,13 +23,13 @@ public class BodyPartBehavior : MonoBehaviour
     public Action<float> GiveDefence = (float amount) => {};
     public Action<float> GiveAttack = (float amount) => {};
 
-    public Action<CardBehavior.CardType, Side> OnBodyPartBroken = (CardBehavior.CardType type, Side side) => {};
+    public Action<CardType, Side> OnBodyPartBroken = (CardType type, Side side) => {};
 
     public int Speed { get => _cardBehavior.Speed; }
     public Side CardSide { get => _cardSide; set => _cardSide = value; }
 
     public bool IsEmpty { get => _cardBehavior == null; }
-    public CardBehavior.CardType GetCardType { get => _cardBehavior.GetCardType; }
+    public CardType GetCardType { get => _cardBehavior.GetCardType; }
 
     public void NewBodyPart(CardBehavior newCardBehvavior)
     {

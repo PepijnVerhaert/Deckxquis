@@ -3,41 +3,22 @@ using UnityEngine;
 public class CardBehavior : MonoBehaviour
 {
     // TYPES
-    public enum CardType
+       
+    public void setProperties(CardProperties properties)
     {
-        Head,
-        Arm,
-        Torso,
-        Leg,
-        Enemy,
+        _properties = properties;
     }
 
-    private CardType _cardType;
-
-    // PASSIVE
-    private int _speed = 0;
-
-    // COST
-    private int _energyCost = 0;
-    private int _healthCost = 0;
-
-    // ACTIVE
-    private int _energy = 0;
-    private int _defence = 0;
-    private int _attack = 0;
-    private int _health = 0;
-
-    // USES
-    private int _uses = -1;
+    private CardProperties _properties;
 
     // PROPERTIES
-    public int Speed { get => _speed; set => _speed = value; }
-    public int EnergyCost { get => _energyCost; set => _energyCost = value; }
-    public int HealthCost { get => _healthCost; set => _healthCost = value; }
-    public int Energy { get => _energy; set => _energy = value; }
-    public int Defence { get => _defence; set => _defence = value; }
-    public int Attack { get => _attack; set => _attack = value; }
-    public int Uses { get => _uses; set => _uses = value; }
-    public int Health { get => _health; set => _health = value; }
-    public CardType GetCardType { get => _cardType; set => _cardType = value; }
+    public int Speed { get => _properties.Speed; }
+    public int EnergyCost { get => _properties.EnergyCost; }
+    public int HealthCost { get => _properties.HealthCost; }
+    public int Energy { get => _properties.Energy; }
+    public int Defence { get => _properties.Defence; }
+    public int Attack { get => _properties.Attack; }
+    public int Uses { get => _properties.Uses; }
+    public int Health { get => _properties.Health; }
+    public CardType GetCardType { get => _properties.Type; }
 }

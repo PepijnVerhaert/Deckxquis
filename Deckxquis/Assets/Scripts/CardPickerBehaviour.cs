@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardPickerBehaviour : MonoBehaviour
 {
-    public static CardBehavior PickCard(CardBehavior.CardType type) {
+    public static CardBehavior PickCard(CardType type) {
         // TODO
         return new CardBehavior();
     }

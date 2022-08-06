@@ -1,13 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum CardType
+{
+    Head,
+    Arm,
+    Torso,
+    Leg,
+    Enemy,
+}
+ 
 
 [System.Serializable]
 public class CardProperties
 {
     public string Name;
     public string ImageName;
-    public CardBehavior.CardType Type;
+    public CardType Type;
     public int Speed;
     public int EnergyCost;
     public int HealthCost;
