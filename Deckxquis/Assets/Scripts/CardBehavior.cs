@@ -8,12 +8,14 @@ public enum CardSide {
      
 public class CardBehavior : MonoBehaviour
 {
+    //sprite renderers
     [SerializeField]
-    Sprite _frontImage;
+    SpriteRenderer _frontImage;
 
     [SerializeField]
-    Sprite _backImage;
+    SpriteRenderer _backImage;
 
+    //images
     [SerializeField]
     Sprite _headBackImage;
 
@@ -29,21 +31,36 @@ public class CardBehavior : MonoBehaviour
     [SerializeField]
     Sprite _enemyBackImage;
 
+    //visuals
+    [SerializeField]
+    GameObject _frontVisuals;
+
+    [SerializeField]
+    GameObject _backVisuals;
+
+    [SerializeField]
+    GameObject _emptyVisuals;
 
 
     public void Show(CardSide side) {
         switch (side) 
         {
             case CardSide.Front:
-
+                _frontVisuals.SetActive(true);
+                _backVisuals.SetActive(false);
+                _emptyVisuals.SetActive(false);
                 break;
             case CardSide.Back:
-
+                _frontVisuals.SetActive(false);
+                _backVisuals.SetActive(true);
+                _emptyVisuals.SetActive(false);
                 break;
             case CardSide.None:
             default:
+                _frontVisuals.SetActive(false);
+                _backVisuals.SetActive(false);
+                _emptyVisuals.SetActive(true);
 
-                
                 // TODO show this side
                 break;
         }
@@ -57,24 +74,24 @@ public class CardBehavior : MonoBehaviour
 
     private void SetCardVisuals()
     {
-        _frontImage = Resources.Load<Sprite>(_properties.ImageName);
+        _frontImage.sprite = Resources.Load<Sprite>(_properties.ImageName);
 
         switch (_properties.Type)
         {
             case CardType.Head:
-                _backImage = _headBackImage;
+                _backImage.sprite = _headBackImage;
                 break;
             case CardType.Arm:
-                _backImage = _armBackImage;
+                _backImage.sprite = _armBackImage;
                 break;
             case CardType.Torso:
-                _backImage = _torsoBackImage;
+                _backImage.sprite = _torsoBackImage;
                 break;
             case CardType.Leg:
-                _backImage = _legBackImage;
+                _backImage.sprite = _legBackImage;
                 break;
             case CardType.Enemy:
-                _backImage = _enemyBackImage;
+                _backImage.sprite = _enemyBackImage;
                 break;
             default:
                 break;
