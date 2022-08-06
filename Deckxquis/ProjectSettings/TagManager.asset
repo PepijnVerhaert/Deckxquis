@@ -51,3 +51,6 @@ TagManager:
   - name: Trackers
     uniqueID: 1985764827
     locked: 0
+  - name: Picking
+    uniqueID: 3936635633
+    locked: 0
