@@ -11,31 +11,42 @@ public enum InputState {
     EnemyTurn,
 }
 
+public enum GameState
+{
+    CardSelect,
+    PlayerTurn,
+    EnemyTurn,
+}
+
 public class GameMangerBehavior : MonoBehaviour
 {
-    private InputState _gameState;
+    private InputState _inputState;
+    private GameState _gameState = GameState.CardSelect;
     public Ray _ray = new Ray();
     public RaycastHit2D _hit;
     [SerializeField] public Camera _camera;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private CardPickerBehaviour _cardPicker;
     private GameObject _hitObject;
+
+    private TurnTrackerBehavior _turnTrackerBehavior;
     
     public void Start()
     {
         _playerInput.actions["Activate"].performed += Activate;
         _playerInput.actions["Deactivate"].performed += Deactivate;
+        _turnTrackerBehavior = GameObject.Find("TurnTracker").GetComponent<TurnTrackerBehavior>();
     }
     
     public void SetInputState(InputState state) 
     {
-        _gameState = state;
+        _inputState = state;
     }
 
     private string GetLayerMask()
     {
         // Layers: "Player", "Enemy", "Picker", "Turn"
-        switch (_gameState)
+        switch (_inputState)
         {
             case InputState.CardSelect:
                 return "Picker";
@@ -55,27 +66,45 @@ public class GameMangerBehavior : MonoBehaviour
     public void Activate(InputAction.CallbackContext callback)
     {
         _ray = _camera.ScreenPointToRay(new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y));
-        _hit = Physics2D.Raycast(_ray.origin, _ray.direction, 1000, LayerMask.NameToLayer(GetLayerMask()));
+        ContactFilter2D contactFilter = new ContactFilter2D();
+        List<RaycastHit2D> hitResults = new List<RaycastHit2D>();
+        var hit = Physics2D.Raycast(_ray.origin, _ray.direction, contactFilter, hitResults, 100);
 
-        Debug.Log("HIT!");
-        if (_hit.collider != null)
+        if (hit > 0)
         {
-            Debug.Log("HIT2");
-            _hitObject = _hit.collider.gameObject;
-            CardProperties clickedCardProperties = _hitObject.GetComponent<CardBehavior>().Properties;
-
-            switch (_gameState)
+            foreach (var hitResult in hitResults)
             {
-                case InputState.CardSelect:
-                    _cardPicker.handleCardPick(clickedCardProperties);
-                    break;
-                case InputState.ActionSelect:
-                    // TODO if turntracker is clicked -> notify turnTracker
-                    // TODO if player -> handle picked action
-                    break;
-                case InputState.EnemyTurn:
-                    // TODO if turntracker is clicked -> notify turnTracker
-                    break;
+                if (hitResult.collider.gameObject.layer == LayerMask.NameToLayer(GetLayerMask()))
+                {
+                    _hit = hitResult;
+                    _hitObject = _hit.collider.gameObject;
+
+                    if (_gameState == GameState.PlayerTurn && _hitObject.CompareTag("EndTurn"))
+                    {
+                        _gameState = GameState.EnemyTurn;
+                        Debug.Log("EndTurn");
+                        //_turnTrackerBehavior.EndTurn();
+                        return;
+                    }
+
+                    CardProperties clickedCardProperties = _hitObject.GetComponent<CardBehavior>().Properties;
+                    Debug.Log("HIT!");
+
+                    switch (_inputState)
+                    {
+                        case InputState.CardSelect:
+                            _cardPicker.handleCardPick(clickedCardProperties);
+                            break;
+                        case InputState.ActionSelect:
+                            // TODO if turntracker is clicked -> notify turnTracker
+                            // TODO if player -> handle picked action
+                            break;
+                        case InputState.EnemyTurn:
+                            // TODO if turntracker is clicked -> notify turnTracker
+                            break;
+                    }
+                    return;
+                }
             }
         }
     }

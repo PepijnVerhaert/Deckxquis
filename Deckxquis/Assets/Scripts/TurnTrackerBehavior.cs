@@ -25,7 +25,7 @@ public class TurnTrackerBehavior : MonoBehaviour
     private void Start()
     {
         _playerBehaviour = GameObject.Find("PlayerCharacter").GetComponent<PlayerBehaviour>();
-        _enemyBehaviour = GameObject.Find("EnemyCharacter").GetComponent<EnemyControllerBehavior>();
+        _enemyBehaviour = GameObject.Find("EnemyCard").GetComponent<EnemyControllerBehavior>();
 
         FillTurnList();
     }
@@ -34,12 +34,12 @@ public class TurnTrackerBehavior : MonoBehaviour
     {
         _playerId = playerId;
         _speedPerTurn.Add(playerId, speed);
-        _accumulatedSpeed.Add(playerId, 0);
+        _accumulatedSpeed.Add(playerId, 100);
     }
 
     public void FillTurnList()
     {
-        while (_imageList.Count < _imageAmount || _speedPerTurn.Count == 0)
+        while (_speedPerTurn.Count != 0 && _imageList.Count < _imageAmount)
         {
             var descendingAccSpeedVec = _accumulatedSpeed.OrderByDescending(pair => pair.Value);
 
@@ -81,6 +81,8 @@ public class TurnTrackerBehavior : MonoBehaviour
             _accumulatedSpeed[turn.Key] = 0;
         }
         _imageList.Clear();
+
+        // TODO: set player turn to 100
         FillTurnList();
     }
 

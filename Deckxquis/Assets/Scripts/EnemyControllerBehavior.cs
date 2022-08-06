@@ -60,10 +60,10 @@ public class EnemyControllerBehavior : MonoBehaviour
                     {
                         behavior.gameObject.SetActive(false);
                         // TODO: ENEMYCONTROLLER: enemy dies
-                        // TODO: ENEMYCONTROLLER: take out of combat tracker
+                        _turnTrackerBehavior.EnemyDied(id);
+                       
                         if (AreAllEnemiesDead())
                         {
-                            _turnTrackerBehavior.EnemyDied(id);
                             // TODO: ENEMYCONTROLLER: delete all current enemies
                             // TODO: ENEMYCONTROLLER: draw new player card
                             // TODO: ENEMYCONTROLLER: draw new enemy cards
