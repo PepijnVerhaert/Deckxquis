@@ -193,7 +193,7 @@ public class CardIconSlotFiller : MonoBehaviour
 
         if (cardBehavior.GetCardType == CardType.Head)
         {
-            int speed = cardBehavior.Speed;
+            int speed = cardBehavior.Speed/10;
             for (int i = 0; i < _backSpeedSlots.Length; i++)
             {
                 if (speed > 0)
