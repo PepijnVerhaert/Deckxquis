@@ -36,7 +36,7 @@ public class CardIconSlotFiller : MonoBehaviour
 
     public void SetSlotsToCardTop(bool topSlots)
     {
-        Vector3 position = _frontSlots.transform.position;
+        Vector3 position = new Vector3(0f, 0f, 0f );
         if (topSlots)
         {
             position.y = 3;
@@ -45,7 +45,7 @@ public class CardIconSlotFiller : MonoBehaviour
         {
             position.y = -3;
         }
-        _frontSlots.transform.position = position;
+        _frontSlots.transform.localPosition = position;
     }
 
     public void SetSlotsCorrect()
