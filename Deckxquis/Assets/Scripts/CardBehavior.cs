@@ -8,13 +8,29 @@ public enum CardSide {
      
 public class CardBehavior : MonoBehaviour
 {
+    [SerializeField]
+    Sprite _frontImage;
+
+    [SerializeField]
+    Sprite _backImage;
+
+    [SerializeField]
+    Sprite _emptyImage;
+
+
     public void Show(CardSide side) {
         switch (side) 
         {
             case CardSide.Front:
+
+                break;
             case CardSide.Back:
+
+                break;
             case CardSide.None:
             default:
+
+                
                 // TODO show this side
                 break;
         }
@@ -23,11 +39,13 @@ public class CardBehavior : MonoBehaviour
     public void SetProperties(CardProperties properties)
     {
         _properties = properties;
-        SetCardSlots();
+        SetCardVisuals();
     }
 
-    private void SetCardSlots()
+    private void SetCardVisuals()
     {
+        var sp = Resources.Load("SpriteFolder/abc") as Sprite;
+
         CardIconSlotFiller slotFiller = GetComponent<CardIconSlotFiller>();
         slotFiller.SetSlotsCorrect();
         switch (GetCardType)
