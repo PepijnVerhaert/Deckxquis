@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4802fe06171caf3ae8cbcb0fc8ddc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cardPickerBehaviour: {fileID: 0}
   _bodyParts:
   - {fileID: 4551144850101783585}
   - {fileID: 2656352209003331121}
