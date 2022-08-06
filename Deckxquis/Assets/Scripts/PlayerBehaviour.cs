@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField] private CardPickerBehaviour _cardPickerBehaviour;
-    [SerializeField] private BodyPartBehavior _head;
+    [SerializeField] private HeadBehavior _head;
     [SerializeField] private BodyPartBehavior _torso;
     [SerializeField] private BodyPartBehavior _leftArm;
     [SerializeField] private BodyPartBehavior _rightArm;
@@ -13,7 +13,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private BodyPartBehavior _rightLeg;
     
     public int Speed { get => calculateSpeed(); }
-    private CardBehavior _pickingPart;
+    private BodyPartBehavior _pickingPart;
     private bool _isPicking = false;
     
     private int calculateSpeed() {
