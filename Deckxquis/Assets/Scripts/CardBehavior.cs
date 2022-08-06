@@ -27,6 +27,11 @@ public class CardBehavior : MonoBehaviour
                 break;
         }
     }
+    
+    public void clearCardValues() 
+    {
+        return;
+    }
 
     private CardProperties _properties;
     
