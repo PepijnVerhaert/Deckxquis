@@ -82,6 +82,10 @@ public class CardRepositoryBehaviour : MonoBehaviour
         
         return picked.ToArray();
     }
+    
+    public CardProperties[] GetAllCardsInOrder(CardType type) {
+        return GetAvailable(type);
+    }
 
     void Start()
     {
