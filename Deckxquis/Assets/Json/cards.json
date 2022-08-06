@@ -2,7 +2,7 @@
   "cardsProperties": [
     {
       "Name": "Fishy",
-      "ImageName": "Textures/Arms/Fishy.png",
+      "ImageName": "Textures/Arms/Fishy",
       "_Type": "Arm",
       "Speed": 0,
       "EnergyCost": 1,
@@ -15,7 +15,7 @@
     },
     {
       "Name": "Holey",
-      "ImageName": "Textures/Arms/Holey.png",
+      "ImageName": "Textures/Arms/Holey",
       "_Type": "Arm",
       "Speed": 0,
       "EnergyCost": 1,
@@ -28,7 +28,7 @@
     },
     {
       "Name": "Nudist",
-      "ImageName": "Textures/Body/Nudist.png",
+      "ImageName": "Textures/Body/Nudist",
       "_Type": "Torso",
       "Speed": 0,
       "EnergyCost": 0,
@@ -41,7 +41,7 @@
     },
     {
       "Name": "Barry",
-      "ImageName": "Textures/Heads/Barry.png",
+      "ImageName": "Textures/Heads/Barry",
       "_Type": "Head",
       "Speed": 10,
       "EnergyCost": 0,
@@ -54,7 +54,7 @@
     },
     {
       "Name": "Jacob",
-      "ImageName": "Textures/Heads/Jacob.png",
+      "ImageName": "Textures/Heads/Jacob",
       "_Type": "Head",
       "Speed": 20,
       "EnergyCost": 0,
@@ -67,7 +67,7 @@
     },
     {
       "Name": "Ophelia",
-      "ImageName": "Textures/Heads/Ophelia.png",
+      "ImageName": "Textures/Heads/Ophelia",
       "_Type": "Head",
       "Speed": 30,
       "EnergyCost": 0,
@@ -80,7 +80,7 @@
     },
     {
       "Name": "Fancy",
-      "ImageName": "Textures/Legs/Fancy.png",
+      "ImageName": "Textures/Legs/Fancy",
       "_Type": "Leg",
       "Speed": 0,
       "EnergyCost": 2,
@@ -93,7 +93,7 @@
     },
     {
       "Name": "Free-Range",
-      "ImageName": "Textures/Legs/Free-Range.png",
+      "ImageName": "Textures/Legs/Free-Range",
       "_Type": "Leg",
       "Speed": 0,
       "EnergyCost": 0,
@@ -106,7 +106,7 @@
     },
     {
       "Name": "Slithering",
-      "ImageName": "Textures/Legs/Slithering.png",
+      "ImageName": "Textures/Legs/Slithering",
       "_Type": "Leg",
       "Speed": 0,
       "EnergyCost": 3,
@@ -119,7 +119,7 @@
     },
     {
       "Name": "Stompy",
-      "ImageName": "Textures/Legs/Stompy.png",
+      "ImageName": "Textures/Legs/Stompy",
       "_Type": "Torso",
       "Speed": 0,
       "EnergyCost": 2,
