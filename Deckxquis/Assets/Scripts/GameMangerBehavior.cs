@@ -57,11 +57,12 @@ public class GameMangerBehavior : MonoBehaviour
         _ray = _camera.ScreenPointToRay(new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y));
         _hit = Physics2D.Raycast(_ray.origin, _ray.direction, 1000, LayerMask.NameToLayer(GetLayerMask()));
 
+        Debug.Log("HIT!");
         if (_hit.collider != null)
         {
+            Debug.Log("HIT2");
             _hitObject = _hit.collider.gameObject;
             CardProperties clickedCardProperties = _hitObject.GetComponent<CardBehavior>().Properties;
-            Debug.Log("HIT!");
 
             switch (_gameState)
             {
