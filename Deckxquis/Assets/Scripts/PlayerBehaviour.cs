@@ -36,6 +36,7 @@ public class PlayerBehaviour : MonoBehaviour
         }  else  {
             _pickingPart.setCardProperties(cardProperties);
         }
+        _isPicking = false;
     }
     
     public void Start() {
