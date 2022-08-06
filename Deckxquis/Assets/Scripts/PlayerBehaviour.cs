@@ -20,19 +20,19 @@ public class PlayerBehaviour : MonoBehaviour
      
     public void AddBodyPart(CardProperties cardProperties) {
         foreach (BodyPartBehavior bodyPart in _bodyParts) {
-            if (!_isPicking && bodyPart.IsEmpty && _pickingType == bodyPart.GetCardType) {
-                _isPicking = true;
+            if (bodyPart.IsEmpty && _pickingType == bodyPart.GetCardType) {
                 bodyPart.setCardProperties(cardProperties);
+                _isPicking = true;
             }
         }
     }
     
     public void Update() {
         foreach (BodyPartBehavior bodyPart in _bodyParts) {
-            if (bodyPart.IsEmpty) {
+            if (!_isPicking && bodyPart.IsEmpty) {
                 _pickingType = bodyPart.GetCardType;
+                _isPicking = true;
                 _cardPickerBehaviour.PickCardFromDeck(bodyPart.GetCardType);
-                _isPicking = false;
             }
         }
     }

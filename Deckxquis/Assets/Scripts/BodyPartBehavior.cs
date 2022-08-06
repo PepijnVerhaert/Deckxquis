@@ -28,21 +28,12 @@ public class BodyPartBehavior : MonoBehaviour
     public int Speed { get => _cardBehavior.Speed; }
     public Side CardSide { get => _cardSide; set => _cardSide = value; }
 
-    public bool IsEmpty { get => _cardBehavior == null; }
+    public bool IsEmpty { get => _cardBehavior.Uses <= 0; }
     public CardType GetCardType { get => _cardBehavior.GetCardType; }
     
     public void setCardProperties(CardProperties cardProperties) {
         _cardBehavior.SetProperties(cardProperties);
         _cardBehavior.Show(global::CardSide.Front);
-    }
-
-    public void NewBodyPart(CardBehavior newCardBehvavior)
-    {
-        if (_currentUses <= 0)
-        {
-            _cardBehavior = newCardBehvavior;
-            _currentUses = newCardBehvavior.Uses;
-        }
     }
 
     void UseBodyPart()
@@ -59,7 +50,6 @@ public class BodyPartBehavior : MonoBehaviour
         if (_currentUses <= 0)
         {
             OnBodyPartBroken(_cardBehavior.GetCardType, _cardSide);
-            _cardBehavior = null;
         }
     }
 }
