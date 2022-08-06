@@ -3,36 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class CardData 
+public class CardProperties
 {
-    public string name;
+    public string Name;
+    public string ImageName;
+    public CardBehavior.CardType Type;
+    public int Speed;
+    public int EnergyCost;
+    public int HealthCost;
+    public int Energy;
+    public int Defence;
+    public int Attack;
+    public int Uses;
+    public int Health;
 }
 
 [System.Serializable]
-public class CardsData
+public class CardsProperties
 {
-    public CardData[] cardsData;
+    public CardProperties[] cardsProperties;
 }
 
 public class CardRepositoryBehaviour : MonoBehaviour
 {
     
-    private CardData[] _cardsData;
+    private CardProperties[] _cardsProperties;
     public TextAsset jsonFile;
 
     private void loadCards() {
-        CardsData cardsInJson = JsonUtility.FromJson<CardsData>(jsonFile.text);
-        _cardsData = cardsInJson.cardsData;
+        CardsProperties cardsInJson = JsonUtility.FromJson<CardsProperties>(jsonFile.text);
+        _cardsProperties = cardsInJson.cardsProperties;
  
-        foreach (CardData cardData in cardsInJson.cardsData)
+        int found = 0;
+        foreach (CardProperties cardProperties in _cardsProperties)
         {
-            Debug.Log("Found card: " + cardData.name);
+            Debug.Log("Found card: " + cardProperties.Name);
+            found++;
         }
+        Debug.Log("Found "+found+" total cards");
     }
 
     void Start()
     {
         loadCards();
     }
-    
 }
