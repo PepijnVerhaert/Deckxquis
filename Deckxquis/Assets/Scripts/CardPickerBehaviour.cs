@@ -2,17 +2,18 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-    public enum PickContext {
-        NewCard,
-        CardFromDeck,
-        None,
-    };
+public enum PickContext
+{
+    NewCard,
+    CardFromDeck,
+    None,
+};
 
 public class CardPickerBehaviour : MonoBehaviour
 {
     private PickContext _context;
     private CardProperties[] _drawnCards;
-    
+
     [SerializeField] CardBehavior _cardA;
     [SerializeField] CardBehavior _cardB;
     [SerializeField] CardBehavior _cardC;
@@ -20,6 +21,7 @@ public class CardPickerBehaviour : MonoBehaviour
     [SerializeField] PlayerDeckBehaviour _playerDeck;
     [SerializeField] PlayerBehaviour _player;
     [SerializeField] GameMangerBehavior _gameManager;
+    GameObject _background;
 
     private List<(CardType, PickContext)> _queue = new List<(CardType, PickContext)>();
     private bool _isPicking;
@@ -28,10 +30,16 @@ public class CardPickerBehaviour : MonoBehaviour
 
     private bool _newWave = false;
 
+    public void Start()
+    {
+        _background = gameObject.transform.GetChild(0).gameObject;
+    }
+
     public void Update()
     {
         if (_queue.Count > 0 && !_isPicking)
         {
+            _background.SetActive(true);
             _isPicking = true;
             var pick = _queue.First();
             _queue.RemoveAt(0);
@@ -52,27 +60,27 @@ public class CardPickerBehaviour : MonoBehaviour
 
     private void ClearCards()
     {
-        _cardA.Show(CardSide.None);        
-        _cardB.Show(CardSide.None);        
-        _cardC.Show(CardSide.None);        
+        _cardA.Show(CardSide.None);
+        _cardB.Show(CardSide.None);
+        _cardC.Show(CardSide.None);
     }
-    
-    private void SetCards(CardProperties[] cardProperties) 
+
+    private void SetCards(CardProperties[] cardProperties)
     {
-        CardBehavior[] cardBehaviors = {_cardA, _cardB, _cardC};
+        CardBehavior[] cardBehaviors = { _cardA, _cardB, _cardC };
         for (int i = 0; i < cardProperties.Length; i++)
         {
             cardBehaviors[i].SetProperties(cardProperties[i]);
             cardBehaviors[i].Show(CardSide.Back);
         }
     }
-    
-    public void PickNewCard(CardType type, PickContext context) 
+
+    public void PickNewCard(CardType type, PickContext context)
     {
         _queue.Add((type, context));
     }
 
-    private bool PickCardFromDeck(CardType type) 
+    private bool PickCardFromDeck(CardType type)
     {
         if (_playerDeck.CardsLeft(type) <= 0)
         {
@@ -85,8 +93,8 @@ public class CardPickerBehaviour : MonoBehaviour
         _gameManager.SetInputState(InputState.CardSelect);
         return true;
     }
-    
-    private bool PickCardFromRepository(CardType type) 
+
+    private bool PickCardFromRepository(CardType type)
     {
         ClearCards();
         var drawnCards = _cardRepository.GetCards(type, 3);
@@ -95,8 +103,9 @@ public class CardPickerBehaviour : MonoBehaviour
         _gameManager.SetInputState(InputState.NewCardSelect);
         return true;
     }
-    
-    public IEnumerator handleCardPick(CardBehavior cardBehavior) {
+
+    public IEnumerator handleCardPick(CardBehavior cardBehavior)
+    {
         CardProperties cardProperties = cardBehavior.Properties;
 
         int queueCount = _queue.Count;
@@ -112,12 +121,12 @@ public class CardPickerBehaviour : MonoBehaviour
             case PickContext.CardFromDeck:
                 cardBehavior.Show(CardSide.Front);
                 yield return new WaitForSeconds(1f);
-                
+
                 foreach (CardProperties cardProperty in _drawnCards)
                 {
-                    if (cardProperty.Id == cardProperties.Id) 
+                    if (cardProperty.Id == cardProperties.Id)
                         _player.AddBodyPart(cardProperties);
-                    else 
+                    else
                         // return not picked cards to deck
                         _playerDeck.AddCard(cardProperty);
                 }
@@ -127,6 +136,7 @@ public class CardPickerBehaviour : MonoBehaviour
 
         ClearCards();
         _isPicking = false;
+        _background.SetActive(false);
 
         if (_newWave && queueCount == 0)
         {
