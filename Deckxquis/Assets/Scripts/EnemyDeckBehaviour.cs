@@ -9,13 +9,23 @@ public class EnemyDeckBehaviour : MonoBehaviour
     private CardProperties[] _enemyCardProperties;
     private int _lastEnemyIndex = 0;
     public int CardsLeft { get => _enemyCardProperties.Length - _lastEnemyIndex; }
-    
+    private GameObject _visual;
+
     void Start()
     {
         _enemyCardProperties = _cardRepository.GetAllCardsInOrder(CardType.Enemy);
+        _visual = gameObject.transform.GetChild(0).gameObject;
     }
-    
-    public CardProperties[] DrawCards(int amount) {
+
+    void Update()
+    {
+        int cardsLeft = CardsLeft;
+        _visual.SetActive(cardsLeft > 0);
+        // TODO show the number
+    }
+
+    public CardProperties[] DrawCards(int amount)
+    {
         List<CardProperties> drawn = new List<CardProperties>();
         for (int i = 0; i < amount; i++)
         {
