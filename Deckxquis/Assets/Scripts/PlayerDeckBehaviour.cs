@@ -68,6 +68,18 @@ public class PlayerDeckBehaviour : MonoBehaviour
             CardType.Leg,
             new List<CardProperties>(_cardRepository.GetCards(CardType.Leg, 3))
         );
+
+        CardType[] types = { CardType.Arm, CardType.Torso, CardType.Leg };
+        List<CardProperties> cardProperties;
+        foreach (CardType type in types)
+        {
+            _playerCards.TryGetValue(type, out cardProperties);
+            foreach (var properties in cardProperties)
+            {
+                _cardRepository.SetInPlay(properties);
+            }
+        }
+
     }
 
     public int CardsLeft(CardType type)

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Assertions;
 
 public enum InputState {
+    NewCardSelect,
     CardSelect,
     PlayerSelect,
     EnemySelect,
@@ -14,7 +15,7 @@ public enum InputState {
 
 public class GameMangerBehavior : MonoBehaviour
 {
-    private InputState _inputState;
+    private InputState _inputState = InputState.None;
     private InputState _previousInputState;
     public Ray _ray = new Ray();
     public RaycastHit2D _hit;
@@ -38,6 +39,7 @@ public class GameMangerBehavior : MonoBehaviour
     }
 
     public BodyPartBehavior BodyPartBehavior { get => _bodyPartBehavior; set => _bodyPartBehavior = value; }
+    public InputState InputState { get => _inputState; }
 
     public void Start()
     {
@@ -56,6 +58,19 @@ public class GameMangerBehavior : MonoBehaviour
     public void EnemiesReady()
     {
         _turnTrackerBehavior.StartCombat();
+        _enemyController.IsInCombat = true;
+    }
+
+    public void WaveDone()
+    {
+        int random = Random.Range(1, 4);
+        _cardPicker.PickNewCard((CardType)random, PickContext.NewCard);
+    }
+
+    public void PickedCardFromRepository()
+    {
+        _enemyController.DrawEnemies();
+        _turnTrackerBehavior.RecalculateTurnList();
     }
 
     public void SetInputState(InputState state) 
@@ -63,6 +78,7 @@ public class GameMangerBehavior : MonoBehaviour
         _previousInputState = _inputState;
         _inputState = state;
     }
+
 
     public void UndoInputState()
     {
@@ -74,6 +90,8 @@ public class GameMangerBehavior : MonoBehaviour
         // Layers: "Player", "Enemy", "Picker", "Turn"
         switch (_inputState)
         {
+            case InputState.NewCardSelect:
+                return "Picker";
             case InputState.CardSelect:
                 return "Picker";
             case InputState.PlayerSelect:
@@ -119,8 +137,18 @@ public class GameMangerBehavior : MonoBehaviour
 
                     switch (_inputState)
                     {
+                        case InputState.NewCardSelect:
+                            StartCoroutine(_cardPicker.handleCardPick(clickedCardBehavior));
+                            break;
                         case InputState.CardSelect:
-                            SetInputState(InputState.PlayerSelect);
+                            if (_turnTrackerBehavior.IsPlayerTurn())
+                            {
+                                SetInputState(InputState.PlayerSelect);
+                            }
+                            else
+                            {
+                                SetInputState(InputState.EnemyTurn);
+                            }
                             StartCoroutine(_cardPicker.handleCardPick(clickedCardBehavior));
                             break;
                         case InputState.PlayerSelect:

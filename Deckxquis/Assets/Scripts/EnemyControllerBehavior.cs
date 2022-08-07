@@ -23,6 +23,9 @@ public class EnemyControllerBehavior : MonoBehaviour
     private EnemyDeckBehaviour _enemyDeckBehaviour;
     private EnemyBehavior[] _enemyBehaviors;
 
+    private bool _isInCombat = false;
+    public bool IsInCombat { set => _isInCombat = value; }
+
     [SerializeField] private float _enemyTurnTime = 2f;
 
     private void Start()
@@ -63,8 +66,10 @@ public class EnemyControllerBehavior : MonoBehaviour
                     behavior.gameObject.SetActive(false);
                     _turnTrackerBehavior.EnemyDied(behavior.CardBehavior.Id);
 
-                    if (AreAllEnemiesDead())
+                    if (AreAllEnemiesDead() && _isInCombat)
                     {
+                        _isInCombat = false;
+                        _gameMangerBehavior.WaveDone();
                         // TODO: ENEMYCONTROLLER: delete all current enemies
                         // TODO: ENEMYCONTROLLER: draw new player card
                         // TODO: ENEMYCONTROLLER: draw new enemy cards

@@ -340,6 +340,62 @@
       "Energy": 0,
       "Defence": 1,
       "Attack": 1,
+      "Uses": 1,
+      "Health": 0
+    },
+
+    {
+      "Name": "Farmer",
+      "ImageName": "Textures/Enemy/Farmer",
+      "_Type": "Enemy",
+      "Speed": 20,
+      "EnergyCost": 0,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 1,
+      "Attack": 1,
+      "Uses": 1,
+      "Health": 0
+    },
+
+    {
+      "Name": "Farmer",
+      "ImageName": "Textures/Enemy/Farmer",
+      "_Type": "Enemy",
+      "Speed": 20,
+      "EnergyCost": 0,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 1,
+      "Attack": 1,
+      "Uses": 1,
+      "Health": 0
+    },
+
+    {
+      "Name": "Farmer",
+      "ImageName": "Textures/Enemy/Farmer",
+      "_Type": "Enemy",
+      "Speed": 20,
+      "EnergyCost": 0,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 1,
+      "Attack": 1,
+      "Uses": 1,
+      "Health": 0
+    },
+
+    {
+      "Name": "Farmer",
+      "ImageName": "Textures/Enemy/Farmer",
+      "_Type": "Enemy",
+      "Speed": 20,
+      "EnergyCost": 0,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 1,
+      "Attack": 1,
       "Uses": 3,
       "Health": 0
     },

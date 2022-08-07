@@ -2,15 +2,14 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class CardPickerBehaviour : MonoBehaviour
-{
-    private enum PickContext {
+    public enum PickContext {
         NewCard,
         CardFromDeck,
         None,
     };
-    
+
+public class CardPickerBehaviour : MonoBehaviour
+{
     private PickContext _context;
     private CardProperties[] _drawnCards;
     
@@ -21,7 +20,34 @@ public class CardPickerBehaviour : MonoBehaviour
     [SerializeField] PlayerDeckBehaviour _playerDeck;
     [SerializeField] PlayerBehaviour _player;
     [SerializeField] GameMangerBehavior _gameManager;
-    
+
+    private List<(CardType, PickContext)> _queue = new List<(CardType, PickContext)>();
+    private bool _isPicking;
+
+    public bool IsPicking { get => _isPicking; }
+
+    public void Update()
+    {
+        if (_queue.Count > 0 && !_isPicking)
+        {
+            _isPicking = true;
+            var pick = _queue.First();
+            _queue.RemoveAt(0);
+
+            switch (pick.Item2)
+            {
+                case PickContext.NewCard:
+                    PickCardFromRepository(pick.Item1);
+                    break;
+                case PickContext.CardFromDeck:
+                    PickCardFromDeck(pick.Item1);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     private void ClearCards()
     {
         _cardA.Show(CardSide.None);        
@@ -39,15 +65,12 @@ public class CardPickerBehaviour : MonoBehaviour
         }
     }
     
-    public void PickNewCard(CardType type) 
+    public void PickNewCard(CardType type, PickContext context) 
     {
-        ClearCards();
-        SetCards(_cardRepository.GetCards(type, 3));
-        _context = PickContext.NewCard;
-        _gameManager.SetInputState(InputState.CardSelect);
+        _queue.Add((type, context));
     }
 
-    public bool PickCardFromDeck(CardType type) 
+    private bool PickCardFromDeck(CardType type) 
     {
         if (_playerDeck.CardsLeft(type) <= 0)
         {
@@ -61,19 +84,31 @@ public class CardPickerBehaviour : MonoBehaviour
         return true;
     }
     
+    private bool PickCardFromRepository(CardType type) 
+    {
+        ClearCards();
+        var drawnCards = _cardRepository.GetCards(type, 3);
+        SetCards(drawnCards);
+        _context = PickContext.NewCard;
+        _gameManager.SetInputState(InputState.NewCardSelect);
+        return true;
+    }
+    
     public IEnumerator handleCardPick(CardBehavior cardBehavior) {
         CardProperties cardProperties = cardBehavior.Properties;
-        cardBehavior.Show(CardSide.Front);
-        yield return new WaitForSeconds(1f);
-       
+      
         switch (_context)
         {
             case PickContext.NewCard:
-                _player.AddBodyPart(cardProperties);
+                _playerDeck.AddCard(cardProperties);
                 _cardRepository.SetInPlay(cardProperties);
                 _context = PickContext.None;
+                _gameManager.PickedCardFromRepository();
                 break;
             case PickContext.CardFromDeck:
+                cardBehavior.Show(CardSide.Front);
+                yield return new WaitForSeconds(1f);
+                
                 foreach (CardProperties cardProperty in _drawnCards)
                 {
                     if (cardProperty.Id == cardProperties.Id) 
@@ -87,5 +122,6 @@ public class CardPickerBehaviour : MonoBehaviour
         }
 
         ClearCards();
+        _isPicking = false;
     }
 }

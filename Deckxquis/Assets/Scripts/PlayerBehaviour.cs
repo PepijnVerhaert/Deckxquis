@@ -12,6 +12,8 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private BodyPartBehavior _leftLeg;
     [SerializeField] private BodyPartBehavior _rightLeg;
 
+    private PlayerDeckBehaviour _playerDeckBehaviour;
+
     private TurnTrackerBehavior _turnTracker;
 
     private HealthTrackerBehaviour _healthTracker = null;
@@ -22,7 +24,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     public int Speed { get => calculateSpeed(); }
 
-    private BodyPartBehavior _pickingPart;
     private bool _isPicking = false;
     private bool _isPickingHead = false;
     private bool _pickedHead = false;
@@ -34,6 +35,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _gameMangerBehavior = GameObject.Find("GameManager").GetComponent<GameMangerBehavior>();
         _turnTracker = GameObject.Find("TurnTracker").GetComponent<TurnTrackerBehavior>();
+        _playerDeckBehaviour = GameObject.Find("PlayerDecks").GetComponent<PlayerDeckBehaviour>();
     }
 
     private int calculateSpeed() {
@@ -48,18 +50,43 @@ public class PlayerBehaviour : MonoBehaviour
     }
      
     public void AddBodyPart(CardProperties cardProperties) {
-        if (_isPickingHead) {
-            _head.SetCardProperties(cardProperties);
-            HealthTracker.MaxHealthLevel = _head.MaxHealth;
-            HealthTracker.removeDefence();
-            EnergyTracker.MaxBaseEnergyLevel = _head.MaxEnergy;
-            EnergyTracker.resetEnergy();
-            _isPickingHead = false;
-            _pickedHead = true;
-        }  else  {
-            _pickingPart.setCardProperties(cardProperties);
+        switch (cardProperties.Type)
+        {
+            case CardType.Head:
+                _head.SetCardProperties(cardProperties);
+                HealthTracker.MaxHealthLevel = _head.MaxHealth;
+                HealthTracker.removeDefence();
+                EnergyTracker.MaxBaseEnergyLevel = _head.MaxEnergy;
+                EnergyTracker.resetEnergy();
+                _isPickingHead = false;
+                _pickedHead = true;
+                break;
+            case CardType.Arm:
+                if (_leftArm.IsEmpty)
+                {
+                    _leftArm.setCardProperties(cardProperties);
+                }
+                else if(_rightArm.IsEmpty)
+                {
+                    _rightArm.setCardProperties(cardProperties);
+                }
+                break;
+            case CardType.Torso:
+                _torso.setCardProperties(cardProperties);
+                break;
+            case CardType.Leg:
+                if (_leftLeg.IsEmpty)
+                {
+                    _leftLeg.setCardProperties(cardProperties);
+                }
+                else if (_rightLeg.IsEmpty)
+                {
+                    _rightLeg.setCardProperties(cardProperties);
+                }
+                break;
+            default:
+                break;
         }
-        _isPicking = false;
     }
 
     public void PlayerReset()
@@ -68,8 +95,21 @@ public class PlayerBehaviour : MonoBehaviour
         _energyTracker.resetEnergy();
     }
     
+    private bool HasBodyParts()
+    {
+        return (_pickedHead && !_torso.IsEmpty && !_leftArm.IsEmpty && !_rightArm.IsEmpty && !_leftLeg.IsEmpty && !_rightLeg.IsEmpty);
+
+    }
+
     public void Update() {
-        if (_isPicking) {
+
+        if (HasBodyParts())
+        {
+            _isPicking = false;
+        }
+
+        if (_isPicking)
+        {
             return;
         }
 
@@ -77,86 +117,39 @@ public class PlayerBehaviour : MonoBehaviour
         {
             _isPickingHead = true;
             _isPicking = true;
-            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Head))
-            {
-                return;
-            }
-            else
-            {
-                _isPicking = false;
-            }
+            _cardPickerBehaviour.PickNewCard(CardType.Head, PickContext.CardFromDeck);
         }
-        if (_torso.IsEmpty)
+        if (_torso.IsEmpty && _playerDeckBehaviour.CardsLeft(CardType.Torso) > 0)
         {
             _torso.Hide();
-            _pickingPart = _torso;
             _isPicking = true;
-            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Torso))
-            {
-                return;
-            }
-            else
-            {
-                _isPicking = false;
-            }
+            _cardPickerBehaviour.PickNewCard(CardType.Torso, PickContext.CardFromDeck);
         }
-        if (_leftArm.IsEmpty)
+        if (_leftArm.IsEmpty && _playerDeckBehaviour.CardsLeft(CardType.Arm) > 0)
         {
             _leftArm.Hide();
-            _pickingPart = _leftArm;
             _isPicking = true;
-            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Arm))
-            {
-                return;
-            }
-            else
-            {
-                _isPicking = false;
-            }
+            _cardPickerBehaviour.PickNewCard(CardType.Arm, PickContext.CardFromDeck);
         }
-        if (_rightArm.IsEmpty)
+        if (_rightArm.IsEmpty && _playerDeckBehaviour.CardsLeft(CardType.Arm) > 0)
         {
             _rightArm.Hide();
-            _pickingPart = _rightArm;
             _isPicking = true;
-            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Arm))
-            {
-                return;
-            }
-            else
-            {
-                _isPicking = false;
-            }
+            _cardPickerBehaviour.PickNewCard(CardType.Arm, PickContext.CardFromDeck);
         }
-        if (_leftLeg.IsEmpty)
+        if (_leftLeg.IsEmpty && _playerDeckBehaviour.CardsLeft(CardType.Leg) > 0)
         {
             _leftLeg.Hide();
-            _pickingPart = _leftLeg;
             _isPicking = true;
-            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Leg))
-            {
-                return;
-            }
-            else
-            {
-                _isPicking = false;
-            }
+            _cardPickerBehaviour.PickNewCard(CardType.Leg, PickContext.CardFromDeck);
         }
-        if (_rightLeg.IsEmpty)
+        if (_rightLeg.IsEmpty && _playerDeckBehaviour.CardsLeft(CardType.Leg) > 0)
         {
             _rightLeg.Hide();
-            _pickingPart = _rightLeg;
             _isPicking = true;
-            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Leg))
-            {
-                return;
-            }
-            else
-            {
-                _isPicking = false;
-            }
+            _cardPickerBehaviour.PickNewCard(CardType.Leg, PickContext.CardFromDeck);
         }
-        if (!_isInitialized)
+        if (!_isInitialized && _pickedHead && !_torso.IsEmpty && !_leftArm.IsEmpty && !_rightArm.IsEmpty && !_leftLeg.IsEmpty && !_rightLeg.IsEmpty)
         {
             _isInitialized = true;
             _turnTracker.SetPlayer(_head.Id, _head.Speed);

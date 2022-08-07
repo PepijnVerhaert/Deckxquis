@@ -146,7 +146,7 @@ public class TurnTrackerBehavior : MonoBehaviour
     {
         FillTurnList();
 
-        if (_turnList[0] == _playerId)
+        if (IsPlayerTurn())
         {
             _gameMangerBehavior.SetInputState(InputState.PlayerSelect);
             _playerBehaviour.PlayerReset();
@@ -156,5 +156,10 @@ public class TurnTrackerBehavior : MonoBehaviour
             _gameMangerBehavior.SetInputState(InputState.EnemyTurn);
             StartCoroutine(_enemyBehaviour.GiveTurn(_turnList[0]));
         }
+    }
+
+    public bool IsPlayerTurn()
+    {
+        return _playerId != null && _turnList[0] == _playerId;
     }
 }
