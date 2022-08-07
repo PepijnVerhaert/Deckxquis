@@ -2058,11 +2058,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _frontImage: {fileID: 349839541171541543}
   _backImage: {fileID: 6773817148213258636}
-  _headBackImage: {fileID: 21300000, guid: 8d80649402d26054cb980c1b8f8e11fb, type: 3}
-  _armBackImage: {fileID: 21300000, guid: 6b067d2de28f15441bebfbc0976b911d, type: 3}
-  _torsoBackImage: {fileID: 21300000, guid: 13644fa1c9259654f91fe299b0c1217c, type: 3}
-  _legBackImage: {fileID: 21300000, guid: cc789d2734c761a43abc284ec5e2a7e6, type: 3}
-  _enemyBackImage: {fileID: 21300000, guid: 229be84472ae7654eb30bd55e0986e4d, type: 3}
+  _headBackImage: {fileID: 21300000, guid: 059190ad002f1174a8c53de211e7b010, type: 3}
+  _armBackImage: {fileID: 21300000, guid: de8d8a14a2178b8458cfec0959823dc0, type: 3}
+  _torsoBackImage: {fileID: 21300000, guid: 6e34baec8b98b9a48bd0baab367b9ca5, type: 3}
+  _legBackImage: {fileID: 21300000, guid: 8424546c53d12ee4b9c14617541ef362, type: 3}
+  _enemyBackImage: {fileID: 21300000, guid: ecfb594625e0e1e4483635e28040a6cd, type: 3}
   _frontBorderRenderer: {fileID: 5691904226598025620}
   _backBorderRenderer: {fileID: 4054468213324097323}
   _frontVisuals: {fileID: 2143733659148468696}
