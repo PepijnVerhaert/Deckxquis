@@ -133,6 +133,8 @@ public class CardIconSlotFiller : MonoBehaviour
     {
         //set cost
         int healthCost = cardBehavior.HealthCost;
+        if (cardBehavior.GetCardType == CardType.Head)
+            healthCost = cardBehavior.HealthCost / 2;
         int energyCost = cardBehavior.EnergyCost;
         for (int i = 0; i < _backCostSlots.Length; i++)
         {
@@ -159,6 +161,8 @@ public class CardIconSlotFiller : MonoBehaviour
         int defenceGain = cardBehavior.Defence;
         int healthGain = cardBehavior.Health;
         int energyGain = cardBehavior.Energy;
+        if (cardBehavior.GetCardType == CardType.Head)
+            energyGain = (cardBehavior.Energy + 1) / 2;
         for (int i = 0; i < _backGainSlots.Length; i++)
         {
             if (attack > 0)
