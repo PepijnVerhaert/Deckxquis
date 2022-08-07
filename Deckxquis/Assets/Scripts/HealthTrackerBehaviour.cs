@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthTrackerBehaviour : MonoBehaviour
 {
     public int _maxHealthLevel;
-    public int _maxDefenceLevel; 
+    public int _maxDefenceLevel = 10; 
     private int _healthLevel;
     private int _defenceLevel;
 
@@ -22,6 +22,7 @@ public class HealthTrackerBehaviour : MonoBehaviour
         set
         {
             _maxHealthLevel = value;
+            _healthLevel = value;
             SetHealthTokenVisibility();
         }
     }

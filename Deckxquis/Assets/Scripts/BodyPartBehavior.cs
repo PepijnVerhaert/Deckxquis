@@ -16,6 +16,8 @@ public class BodyPartBehavior : MonoBehaviour
     private int _currentUses = -1;
 
     private GameMangerBehavior _gameManagerBehavior;
+    private EnergyTrackerBehaviour _energyTrackerBehavior;
+    private HealthTrackerBehaviour _healthTrackerBehavior;
 
     // ACTIONS
     public Action<float> UseEnergy = (float amount) => {};
@@ -32,26 +34,39 @@ public class BodyPartBehavior : MonoBehaviour
     public string Id { get => _cardBehavior.Id; }
     public Side CardSide { get => _cardSide; set => _cardSide = value; }
 
-    public bool IsEmpty { get => _cardBehavior.Properties == null || _cardBehavior.Uses <= 0; }
+    public bool IsEmpty { get => _cardBehavior.Properties == null || _currentUses <= 0; }
     public CardType GetCardType { get => _cardBehavior.GetCardType; }
 
     public void Start()
     {
         _gameManagerBehavior = GameObject.Find("GameManager").GetComponent<GameMangerBehavior>();
+        _energyTrackerBehavior = GameObject.Find("EnergyTracker").GetComponent<EnergyTrackerBehaviour>();
+        _healthTrackerBehavior = GameObject.Find("HealthTracker").GetComponent<HealthTrackerBehaviour>();
+    }
+
+    public void Hide()
+    {
+        _cardBehavior.Show(global::CardSide.None);
     }
 
     public void setCardProperties(CardProperties cardProperties) {
         _cardBehavior.SetProperties(cardProperties);
+        _currentUses = cardProperties.Uses;
         _cardBehavior.Show(global::CardSide.Front);
     }
 
     public void UseBodyPart()
     {
+        if (_energyTrackerBehavior.EnergyLevel < _cardBehavior.EnergyCost)
+        {
+            return;
+        }
+
         if (_cardBehavior.Attack > 0)
         {
             _gameManagerBehavior.SetInputState(InputState.EnemySelect);
-            GiveAttack(_cardBehavior.Attack);
-
+            _gameManagerBehavior.Damage = _cardBehavior.Attack;
+            _gameManagerBehavior.BodyPartBehavior = this;
         }
         else
         {
@@ -59,16 +74,16 @@ public class BodyPartBehavior : MonoBehaviour
         }
     }
 
-    private void UsePassives()
+    public void UsePassives()
     {
         --_currentUses;
 
-        UseEnergy(_cardBehavior.EnergyCost);
-        UseHealth(_cardBehavior.HealthCost);
+        _energyTrackerBehavior.useEnergy(_cardBehavior.EnergyCost);
+        _healthTrackerBehavior.reduceHealth(_cardBehavior.HealthCost);
 
-        GiveEnergy(_cardBehavior.Energy);
-        GiveHealth(_cardBehavior.Health);
-        GiveDefence(_cardBehavior.Defence);
+        _energyTrackerBehavior.addEnergy(_cardBehavior.Energy);
+        _healthTrackerBehavior.heal(_cardBehavior.Health);
+        _healthTrackerBehavior.increaseDefence(_cardBehavior.Defence);
 
         if (_currentUses <= 0)
         {

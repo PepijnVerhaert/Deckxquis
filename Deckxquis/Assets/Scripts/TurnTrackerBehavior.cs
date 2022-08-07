@@ -141,6 +141,7 @@ public class TurnTrackerBehavior : MonoBehaviour
         if (_turnList[0] == _playerId)
         {
             _gameMangerBehavior.SetInputState(InputState.PlayerSelect);
+            _playerBehaviour.PlayerReset();
         }
         else
         {

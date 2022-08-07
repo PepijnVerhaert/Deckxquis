@@ -15,6 +15,7 @@ public enum InputState {
 public class GameMangerBehavior : MonoBehaviour
 {
     private InputState _inputState;
+    private InputState _previousInputState;
     public Ray _ray = new Ray();
     public RaycastHit2D _hit;
     [SerializeField] public Camera _camera;
@@ -24,7 +25,20 @@ public class GameMangerBehavior : MonoBehaviour
 
     private TurnTrackerBehavior _turnTrackerBehavior;
     private EnemyControllerBehavior _enemyController;
-    
+
+
+    private BodyPartBehavior _bodyPartBehavior;
+
+    private int _damage;
+
+    public int Damage
+    {
+        get { return _damage; }
+        set { _damage = value; }
+    }
+
+    public BodyPartBehavior BodyPartBehavior { get => _bodyPartBehavior; set => _bodyPartBehavior = value; }
+
     public void Start()
     {
         _playerInput.actions["Activate"].performed += Activate;
@@ -35,7 +49,7 @@ public class GameMangerBehavior : MonoBehaviour
 
     public void PlayerReady()
     {
-        _inputState = InputState.None;
+        SetInputState(InputState.None);
         StartCoroutine(_enemyController.DrawEnemies());
     }
 
@@ -46,7 +60,13 @@ public class GameMangerBehavior : MonoBehaviour
 
     public void SetInputState(InputState state) 
     {
+        _previousInputState = _inputState;
         _inputState = state;
+    }
+
+    public void UndoInputState()
+    {
+        _inputState = _previousInputState;
     }
 
     private string GetLayerMask()
@@ -89,7 +109,7 @@ public class GameMangerBehavior : MonoBehaviour
 
                     if (_inputState == InputState.PlayerSelect && _hitObject.CompareTag("EndTurn"))
                     {
-                        _inputState = InputState.None;
+                        SetInputState(InputState.None);
                         Debug.Log("EndTurn");
                         _turnTrackerBehavior.EndTurn();
                         return;
@@ -100,7 +120,7 @@ public class GameMangerBehavior : MonoBehaviour
                     switch (_inputState)
                     {
                         case InputState.CardSelect:
-                            _inputState = InputState.None;
+                            SetInputState(InputState.PlayerSelect);
                             StartCoroutine(_cardPicker.handleCardPick(clickedCardBehavior));
                             break;
                         case InputState.PlayerSelect:
@@ -115,6 +135,9 @@ public class GameMangerBehavior : MonoBehaviour
 
                             break;
                         case InputState.EnemySelect:
+                            _hitObject.GetComponentInParent<EnemyBehavior>().ChangeHealth(-_damage);
+                            _bodyPartBehavior.UsePassives();
+                            SetInputState(InputState.PlayerSelect);
                             break;
                         case InputState.EnemyTurn:
                             // TODO if turntracker is clicked -> notify turnTracker
@@ -134,7 +157,7 @@ public class GameMangerBehavior : MonoBehaviour
         Debug.Log("UNHIT!");
         if (_inputState == InputState.EnemySelect)
         {
-            _inputState = InputState.PlayerSelect;
+            SetInputState(InputState.PlayerSelect);
         }
     }
 }

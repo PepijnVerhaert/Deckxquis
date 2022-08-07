@@ -47,13 +47,18 @@ public class CardPickerBehaviour : MonoBehaviour
         _gameManager.SetInputState(InputState.CardSelect);
     }
 
-    public void PickCardFromDeck(CardType type) 
+    public bool PickCardFromDeck(CardType type) 
     {
+        if (_playerDeck.CardsLeft(type) <= 0)
+        {
+            return false;
+        }
         ClearCards();
         _drawnCards = _playerDeck.DrawCards(type, 3);
         SetCards(_drawnCards);
         _context = PickContext.CardFromDeck;
         _gameManager.SetInputState(InputState.CardSelect);
+        return true;
     }
     
     public IEnumerator handleCardPick(CardBehavior cardBehavior) {

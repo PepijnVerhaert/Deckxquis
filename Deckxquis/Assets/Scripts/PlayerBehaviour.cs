@@ -61,51 +61,106 @@ public class PlayerBehaviour : MonoBehaviour
         }
         _isPicking = false;
     }
+
+    public void PlayerReset()
+    {
+        _healthTracker.removeDefence();
+        _energyTracker.resetEnergy();
+    }
     
     public void Update() {
-        if (!_isPicking) {
-            if (!_pickedHead)
+        if (_isPicking) {
+            return;
+        }
+
+        if (!_pickedHead)
+        {
+            _isPickingHead = true;
+            _isPicking = true;
+            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Head))
             {
-                _isPickingHead = true;
-                _isPicking = true;
-                _cardPickerBehaviour.PickCardFromDeck(CardType.Head);
+                return;
             }
-            else if (_torso.IsEmpty)
+            else
             {
-                _pickingPart = _torso;
-                _isPicking = true;
-                _cardPickerBehaviour.PickCardFromDeck(CardType.Torso);
+                _isPicking = false;
             }
-            else if (_leftArm.IsEmpty)
+        }
+        if (_torso.IsEmpty)
+        {
+            _torso.Hide();
+            _pickingPart = _torso;
+            _isPicking = true;
+            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Torso))
             {
-                _pickingPart = _leftArm;
-                _isPicking = true;
-                _cardPickerBehaviour.PickCardFromDeck(CardType.Arm);
+                return;
             }
-            else if (_rightArm.IsEmpty)
+            else
             {
-                _pickingPart = _rightArm;
-                _isPicking = true;
-                _cardPickerBehaviour.PickCardFromDeck(CardType.Arm);
+                _isPicking = false;
             }
-            else if (_leftLeg.IsEmpty)
+        }
+        if (_leftArm.IsEmpty)
+        {
+            _leftArm.Hide();
+            _pickingPart = _leftArm;
+            _isPicking = true;
+            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Arm))
             {
-                _pickingPart = _leftLeg;
-                _isPicking = true;
-                _cardPickerBehaviour.PickCardFromDeck(CardType.Leg);
+                return;
             }
-            else if (_rightLeg.IsEmpty)
+            else
             {
-                _pickingPart = _rightLeg;
-                _isPicking = true;
-                _cardPickerBehaviour.PickCardFromDeck(CardType.Leg);
+                _isPicking = false;
             }
-            else if (!_isInitialized)
+        }
+        if (_rightArm.IsEmpty)
+        {
+            _rightArm.Hide();
+            _pickingPart = _rightArm;
+            _isPicking = true;
+            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Arm))
             {
-                _isInitialized = true;
-                _turnTracker.SetPlayer(_head.Id, _head.Speed);
-                _gameMangerBehavior.PlayerReady();
+                return;
             }
+            else
+            {
+                _isPicking = false;
+            }
+        }
+        if (_leftLeg.IsEmpty)
+        {
+            _leftLeg.Hide();
+            _pickingPart = _leftLeg;
+            _isPicking = true;
+            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Leg))
+            {
+                return;
+            }
+            else
+            {
+                _isPicking = false;
+            }
+        }
+        if (_rightLeg.IsEmpty)
+        {
+            _rightLeg.Hide();
+            _pickingPart = _rightLeg;
+            _isPicking = true;
+            if (_cardPickerBehaviour.PickCardFromDeck(CardType.Leg))
+            {
+                return;
+            }
+            else
+            {
+                _isPicking = false;
+            }
+        }
+        if (!_isInitialized)
+        {
+            _isInitialized = true;
+            _turnTracker.SetPlayer(_head.Id, _head.Speed);
+            _gameMangerBehavior.PlayerReady();
         }
     }
 }

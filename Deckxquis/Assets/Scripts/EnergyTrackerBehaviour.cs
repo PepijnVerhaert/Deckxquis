@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnergyTrackerBehaviour : MonoBehaviour
 {
     private int _maxBaseEnergyLevel;
-    private int _maxExtraEnergyLevel;
+    private int _maxExtraEnergyLevel = 10;
     private int _baseEnergyLevel;
     private int _extraEnergyLevel;
 

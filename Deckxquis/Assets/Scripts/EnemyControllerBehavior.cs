@@ -21,8 +21,6 @@ public class EnemyControllerBehavior : MonoBehaviour
     private TurnTrackerBehavior _turnTrackerBehavior;
     private GameMangerBehavior _gameMangerBehavior;
     private EnemyDeckBehaviour _enemyDeckBehaviour;
-    private CardPickerBehaviour _cardPicker;
-    private CardBehavior[] _cardBehaviors;
     private EnemyBehavior[] _enemyBehaviors;
 
     [SerializeField] private float _enemyTurnTime = 2f;
@@ -31,9 +29,10 @@ public class EnemyControllerBehavior : MonoBehaviour
     {
         _turnTrackerBehavior = GameObject.Find("TurnTracker").GetComponent<TurnTrackerBehavior>();
         _enemyDeckBehaviour = GameObject.Find("EnemyDecks").GetComponent<EnemyDeckBehaviour>();
-        _cardBehaviors = GetComponentsInChildren<CardBehavior>();
         _enemyBehaviors = GetComponentsInChildren<EnemyBehavior>();
         _gameMangerBehavior = GameObject.Find("GameManager").GetComponent<GameMangerBehavior>();
+
+
     }
 
     public IEnumerator DrawEnemies()

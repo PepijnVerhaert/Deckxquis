@@ -187,21 +187,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 852595956, guid: af16005887ec842408686955984eb87c, type: 3}
+      propertyPath: _cardRepository
+      value: 
+      objectReference: {fileID: 1240178753}
     - target: {fileID: 1759147474679252701, guid: af16005887ec842408686955984eb87c, type: 3}
       propertyPath: m_RootOrder
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759147474679252701, guid: af16005887ec842408686955984eb87c, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759147474679252701, guid: af16005887ec842408686955984eb87c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759147474679252701, guid: af16005887ec842408686955984eb87c, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1759147474679252701, guid: af16005887ec842408686955984eb87c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -249,24 +241,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af16005887ec842408686955984eb87c, type: 3}
---- !u!1 &852595955 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4071513264271797247, guid: af16005887ec842408686955984eb87c, type: 3}
-  m_PrefabInstance: {fileID: 852595954}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &852595956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852595955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dea7e4fd9180681e9ec884cd3ae0751, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cardRepository: {fileID: 1240178753}
 --- !u!1001 &1033372757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -274,6 +248,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2985829427917307258, guid: 0d3863e226cdcf84cbea1f8fcac674c2, type: 3}
+      propertyPath: _maxHealthLevel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985829427917307258, guid: 0d3863e226cdcf84cbea1f8fcac674c2, type: 3}
+      propertyPath: _maxDefenceLevel
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2985829427917307258, guid: 0d3863e226cdcf84cbea1f8fcac674c2, type: 3}
       propertyPath: _defenceTokenBehaviors.Array.data[0]
       value: 
@@ -877,7 +859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8053032338672385220, guid: c6e2d91308e042540a1d82f640e3ddf0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.08
       objectReference: {fileID: 0}
     - target: {fileID: 8053032338672385220, guid: c6e2d91308e042540a1d82f640e3ddf0, type: 3}
       propertyPath: m_LocalPosition.z
