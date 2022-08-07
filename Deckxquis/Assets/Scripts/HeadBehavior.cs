@@ -9,8 +9,9 @@ public class HeadBehavior : MonoBehaviour
     
     public void SetCardProperties(CardProperties cardProperties) {
         _cardBehavior.SetProperties(cardProperties);
+        _cardBehavior.Show(global::CardSide.Front);
     }
-    
+
     public int MaxHealth
     {
         get { return _cardBehavior.Health; }
