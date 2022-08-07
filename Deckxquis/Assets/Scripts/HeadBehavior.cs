@@ -17,6 +17,11 @@ public class HeadBehavior : MonoBehaviour
         get { return _cardBehavior.HealthCost; }
     }
 
+    public string Name
+    {
+        get { return _cardBehavior.Name; }
+    }
+
     public int MaxEnergy
     {
         get { return _cardBehavior.Energy; }

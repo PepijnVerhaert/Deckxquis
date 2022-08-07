@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private BodyPartBehavior _rightArm;
     [SerializeField] private BodyPartBehavior _leftLeg;
     [SerializeField] private BodyPartBehavior _rightLeg;
+
+    [SerializeField]
+    Text _characterName;
 
     private PlayerDeckBehaviour _playerDeckBehaviour;
 
@@ -158,12 +162,50 @@ public class PlayerBehaviour : MonoBehaviour
     {
         HideEmpty();
         PickBodyParts();
-
+        UpdateName();
         if (!_isInitialized && HasBodyParts())
         {
             _isInitialized = true;
             _turnTracker.SetPlayer(_head.Id, _head.Speed);
             _gameMangerBehavior.PlayerReady();
         }
+    }
+
+    private void UpdateName()
+    {
+        string headName = string.Empty;
+        if (_pickedHead)
+        {
+            headName = _head.Name + " ";
+        }
+
+        string theThe = string.Empty;
+        if (_pickedHead && !_torso.IsEmpty)
+        {
+            theThe = "The ";
+        }
+
+            string leftArmName = string.Empty;
+        if(!_leftArm.IsEmpty)
+            leftArmName = _leftArm.Name + " ";
+
+        string rightArmName = string.Empty;
+        if(!_rightArm.IsEmpty)
+            rightArmName = _rightArm.Name + " ";
+
+        string leftLegName = string.Empty;
+        if(!_leftLeg.IsEmpty)
+            leftLegName = _leftLeg.Name + " ";
+
+        string rightLegName = string.Empty;
+        if(!_rightLeg.IsEmpty)
+            rightLegName = _rightLeg.Name + " ";
+
+        string torsoName = string.Empty;
+        if(!_torso.IsEmpty)
+            torsoName = _torso.Name;
+
+        string fullName = headName + theThe + leftArmName + rightArmName + leftLegName + rightLegName + torsoName;
+        _characterName.text = fullName;
     }
 }

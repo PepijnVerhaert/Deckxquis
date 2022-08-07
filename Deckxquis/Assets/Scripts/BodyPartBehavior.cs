@@ -37,6 +37,7 @@ public class BodyPartBehavior : MonoBehaviour
     public Action<CardType, Side> OnBodyPartBroken = (CardType type, Side side) => {};
     
     public int Speed { get => _cardBehavior.Speed; }
+    public string Name { get => _cardBehavior.Name; }
     public string Id { get => _cardBehavior.Id; }
     public Side CardSide { get => _cardSide; set => _cardSide = value; }
 
