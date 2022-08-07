@@ -56,7 +56,11 @@ public class CardPickerBehaviour : MonoBehaviour
         _gameManager.SetInputState(InputState.CardSelect);
     }
     
-    public void handleCardPick(CardProperties cardProperties) {
+    public IEnumerator handleCardPick(CardBehavior cardBehavior) {
+        CardProperties cardProperties = cardBehavior.Properties;
+        cardBehavior.Show(CardSide.Front);
+        yield return new WaitForSeconds(2f);
+       
         switch (_context)
         {
             case PickContext.NewCard:
@@ -76,6 +80,7 @@ public class CardPickerBehaviour : MonoBehaviour
                 _context = PickContext.None;
                 break;
         }
+
         ClearCards();
     }
 }

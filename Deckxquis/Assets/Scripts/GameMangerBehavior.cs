@@ -9,6 +9,7 @@ public enum InputState {
     ActionSelect,
     EnemySelect,
     EnemyTurn,
+    None,
 }
 
 public enum GameState
@@ -87,13 +88,14 @@ public class GameMangerBehavior : MonoBehaviour
                         return;
                     }
 
-                    CardProperties clickedCardProperties = _hitObject.GetComponent<CardBehavior>().Properties;
                     Debug.Log("HIT!");
+                    CardBehavior clickedCardBehavior = _hitObject.GetComponent<CardBehavior>();
 
                     switch (_inputState)
                     {
                         case InputState.CardSelect:
-                            _cardPicker.handleCardPick(clickedCardProperties);
+                            _inputState = InputState.None;
+                            StartCoroutine(_cardPicker.handleCardPick(clickedCardBehavior));
                             break;
                         case InputState.ActionSelect:
                             // TODO if turntracker is clicked -> notify turnTracker
