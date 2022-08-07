@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2985829427917307258, guid: 0d3863e226cdcf84cbea1f8fcac674c2, type: 3}
+      propertyPath: _maxDefenceLevel
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4733976952378864272, guid: 0d3863e226cdcf84cbea1f8fcac674c2, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -544,6 +548,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 927538935932819364, guid: 28188e1b534ca2b4e8210d2fe8679cd1, type: 3}
       propertyPath: m_Name
+      value: EndTurn
+      objectReference: {fileID: 0}
+    - target: {fileID: 927538935932819364, guid: 28188e1b534ca2b4e8210d2fe8679cd1, type: 3}
+      propertyPath: m_TagString
       value: EndTurn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
