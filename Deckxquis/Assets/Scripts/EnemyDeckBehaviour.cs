@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyDeckBehaviour : MonoBehaviour
 {
+    [SerializeField]
+    private Text _deckSizeText;
+
     [SerializeField]
     private CardRepositoryBehaviour _cardRepository;
     private CardProperties[] _enemyCardProperties;
@@ -21,7 +25,7 @@ public class EnemyDeckBehaviour : MonoBehaviour
     {
         int cardsLeft = CardsLeft;
         _visual.SetActive(cardsLeft > 0);
-        // TODO show the number
+        _deckSizeText.text = cardsLeft.ToString();
     }
 
     public CardProperties[] DrawCards(int amount)
