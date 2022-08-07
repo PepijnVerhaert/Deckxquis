@@ -45,6 +45,35 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
+    public void DeclareIntent()
+    {
+        if (_attackPattern.Count != 0)
+        {
+            if (_attackPattern[_attackCount])
+            {
+                DeclareAttack();
+            }
+            else
+            {
+                DeclareDefence();
+            }
+        }
+    }
+
+    private void DeclareAttack()
+    {
+        CardIconSlotFiller iconSetter = _cardBehavior.gameObject.GetComponent<CardIconSlotFiller>();
+        if (iconSetter == null) return;
+        iconSetter.SetCustomCardIcons(0, _cardBehavior.HealthCost, 0, 0, _cardBehavior.Attack, 0);
+    }
+
+    private void DeclareDefence()
+    {
+        CardIconSlotFiller iconSetter = _cardBehavior.gameObject.GetComponent<CardIconSlotFiller>();
+        if(iconSetter == null) return;
+        iconSetter.SetCustomCardIcons(0, 0, 0, _cardBehavior.Health, 0, _cardBehavior.Defence);
+    }
+
     private int Attack()
     {
         if (!IsAlive()) return 0;
