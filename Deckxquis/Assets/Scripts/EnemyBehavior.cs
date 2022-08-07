@@ -12,6 +12,7 @@ public class EnemyBehavior : MonoBehaviour
     private int _currentDefence;
     private int _currentHealth;
 
+    private HealthTrackerBehaviour _healthTrackerBehaviour;
     public CardBehavior CardBehavior
     {
         get { return _cardBehavior; }
@@ -31,6 +32,7 @@ public class EnemyBehavior : MonoBehaviour
     private void Start()
     {
         _cardBehavior = GetComponentInChildren<CardBehavior>();
+        _healthTrackerBehaviour = GameObject.Find("HealthTracker").GetComponent<HealthTrackerBehaviour>();
     }
 
     public void PlayTurn()
@@ -85,6 +87,7 @@ public class EnemyBehavior : MonoBehaviour
         if (!IsAlive()) return 0;
         _currentDefence = 0;
         _currentHealth -= _cardBehavior.HealthCost;
+        _healthTrackerBehaviour.takeDamage(_cardBehavior.Attack);
         return _cardBehavior.Attack;
     }
 
