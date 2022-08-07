@@ -54,6 +54,58 @@
       "Health": 0
     },
     {
+      "Name": "Squishy",
+      "ImageName": "Textures/Arms/Squishy",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 2,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 6,
+      "Uses": 2,
+      "Health": 0
+    },
+    {
+      "Name": "Clumsy",
+      "ImageName": "Textures/Arms/Clumsy",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 1,
+      "Uses": 4,
+      "Health": 0
+    },
+    {
+      "Name": "Fun",
+      "ImageName": "Textures/Arms/Fun",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 1,
+      "Uses": 4,
+      "Health": 0
+    },
+    {
+      "Name": "Smokey",
+      "ImageName": "Textures/Arms/Smokey",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 0,
+      "Energy": 0,
+      "Defence": 6,
+      "Attack": 0,
+      "Uses": 1,
+      "Health": 0
+    },
+    {
       "Name": "Holey",
       "ImageName": "Textures/Arms/Holey",
       "_Type": "Arm",
