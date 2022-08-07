@@ -212,45 +212,7 @@
       "Health": 0
     },
 
-    {
-      "Name": "Farmer",
-      "ImageName": "Textures/Enemy/Farmer",
-      "_Type": "Enemy",
-      "Speed": 20,
-      "EnergyCost": 0,
-      "HealthCost": 0,
-      "Energy": 0,
-      "Defence": 1,
-      "Attack": 1,
-      "Uses": 3,
-      "Health": 0
-    },
-    {
-      "Name": "Farmer",
-      "ImageName": "Textures/Enemy/Farmer",
-      "_Type": "Enemy",
-      "Speed": 20,
-      "EnergyCost": 0,
-      "HealthCost": 0,
-      "Energy": 0,
-      "Defence": 1,
-      "Attack": 1,
-      "Uses": 3,
-      "Health": 0
-    },
-    {
-      "Name": "Farmer",
-      "ImageName": "Textures/Enemy/Farmer",
-      "_Type": "Enemy",
-      "Speed": 20,
-      "EnergyCost": 0,
-      "HealthCost": 0,
-      "Energy": 0,
-      "Defence": 1,
-      "Attack": 1,
-      "Uses": 3,
-      "Health": 0
-    },
+    
     {
       "Name": "Farmer",
       "ImageName": "Textures/Enemy/Farmer",
@@ -265,45 +227,7 @@
       "Health": 0
     },
 
-    {
-      "Name": "Archer",
-      "ImageName": "Textures/Enemy/Archer",
-      "_Type": "Enemy",
-      "Speed": 25,
-      "EnergyCost": 0,
-      "HealthCost": 0,
-      "Energy": 0,
-      "Defence": 1,
-      "Attack": 3,
-      "Uses": 4,
-      "Health": 0
-    },
-    {
-      "Name": "Archer",
-      "ImageName": "Textures/Enemy/Archer",
-      "_Type": "Enemy",
-      "Speed": 25,
-      "EnergyCost": 0,
-      "HealthCost": 0,
-      "Energy": 0,
-      "Defence": 1,
-      "Attack": 3,
-      "Uses": 4,
-      "Health": 0
-    },
-    {
-      "Name": "Archer",
-      "ImageName": "Textures/Enemy/Archer",
-      "_Type": "Enemy",
-      "Speed": 25,
-      "EnergyCost": 0,
-      "HealthCost": 0,
-      "Energy": 0,
-      "Defence": 1,
-      "Attack": 3,
-      "Uses": 4,
-      "Health": 0
-    },
+    
     {
       "Name": "Archer",
       "ImageName": "Textures/Enemy/Archer",
@@ -318,45 +242,6 @@
       "Health": 0
     },
 
-    {
-      "Name": "Knight",
-      "ImageName": "Textures/Enemy/Knight",
-      "_Type": "Enemy",
-      "Speed": 15,
-      "EnergyCost": 0,
-      "HealthCost": 0,
-      "Energy": 0,
-      "Defence": 3,
-      "Attack": 2,
-      "Uses": 8,
-      "Health": 0
-    },
-    {
-      "Name": "Knight",
-      "ImageName": "Textures/Enemy/Knight",
-      "_Type": "Enemy",
-      "Speed": 15,
-      "EnergyCost": 0,
-      "HealthCost": 0,
-      "Energy": 0,
-      "Defence": 3,
-      "Attack": 2,
-      "Uses": 8,
-      "Health": 0
-    },
-    {
-      "Name": "Knight",
-      "ImageName": "Textures/Enemy/Knight",
-      "_Type": "Enemy",
-      "Speed": 15,
-      "EnergyCost": 0,
-      "HealthCost": 0,
-      "Energy": 0,
-      "Defence": 3,
-      "Attack": 2,
-      "Uses": 8,
-      "Health": 0
-    },
     {
       "Name": "Knight",
       "ImageName": "Textures/Enemy/Knight",
@@ -379,8 +264,8 @@
       "EnergyCost": 0,
       "HealthCost": 0,
       "Energy": 0,
-      "Defence": 6,
-      "Attack": 6,
+      "Defence": 3,
+      "Attack": 3,
       "Uses": 25,
       "Health": 0
     }
