@@ -9,7 +9,7 @@ public enum CardType
     Leg,
     Enemy,
 }
- 
+
 [System.Serializable]
 public class CardProperties
 {
@@ -26,7 +26,8 @@ public class CardProperties
     public int Uses;
     public int Health;
     public string Id;
-    public string toString() {
+    public string toString()
+    {
         return System.String.Format("{0} {1} {2}", Id, Type, Name);
     }
 }
@@ -44,35 +45,38 @@ public class CardRepositoryBehaviour : MonoBehaviour
     private List<string> _inPlay = new List<string>();
     public TextAsset jsonFile;
 
-    private void loadCards() {
+    private void loadCards()
+    {
         CardsProperties cardsInJson = JsonUtility.FromJson<CardsProperties>(jsonFile.text);
         _cardsProperties = cardsInJson.cardsProperties;
- 
+
         for (int i = 0; i < _cardsProperties.Length; i++)
         {
-            _cardsProperties[i].Type = (CardType) System.Enum.Parse(typeof(CardType), _cardsProperties[i]._Type);
+            _cardsProperties[i].Type = (CardType)System.Enum.Parse(typeof(CardType), _cardsProperties[i]._Type);
             _cardsProperties[i].Id = System.Guid.NewGuid().ToString();
             Debug.Log("Found card: " + _cardsProperties[i].toString());
         }
-        Debug.Log("Found "+_cardsProperties.Length+" total cards");
+        Debug.Log("Found " + _cardsProperties.Length + " total cards");
     }
-    
-    private CardProperties[] GetAvailable(CardType type, List<System.String> pickedIds) {
+
+    private CardProperties[] GetAvailable(CardType type, List<System.String> pickedIds)
+    {
         if (_cardsProperties == null) return new CardProperties[0];
         List<CardProperties> available = new List<CardProperties>();
         foreach (CardProperties cardProperties in _cardsProperties)
         {
             if (
-                cardProperties.Type == type && 
-                !_inPlay.Contains(cardProperties.Id) && 
+                cardProperties.Type == type &&
+                !_inPlay.Contains(cardProperties.Id) &&
                 !pickedIds.Contains(cardProperties.Id)
-            ) 
+            )
                 available.Add(cardProperties);
         }
         return available.ToArray();
     }
-    
-    public CardProperties[] GetCards(CardType type, int amount) {
+
+    public CardProperties[] GetCards(CardType type, int amount)
+    {
         CardProperties[] available;
         List<CardProperties> picked = new List<CardProperties>();
         List<string> pickedIds = new List<string>();
@@ -85,19 +89,22 @@ public class CardRepositoryBehaviour : MonoBehaviour
             picked.Add(pickedProperties);
             pickedIds.Add(pickedProperties.Id);
         }
-        
+
         return picked.ToArray();
     }
-    
-    public void SetInPlay(CardProperties cardProperties) {
+
+    public void SetInPlay(CardProperties cardProperties)
+    {
         _inPlay.Add(cardProperties.Id);
     }
-    
-    public bool GetInPlay(CardProperties cardProperties) {
+
+    public bool GetInPlay(CardProperties cardProperties)
+    {
         return _inPlay.Contains(cardProperties.Id);
     }
-    
-    public CardProperties[] GetAllCardsInOrder(CardType type) {
+
+    public CardProperties[] GetAllCardsInOrder(CardType type)
+    {
         return GetAvailable(type, new List<string>());
     }
 
