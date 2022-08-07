@@ -262,11 +262,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85e83888d108932449a1d916bf1ad032, type: 3}
---- !u!20 &219328028 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 8010746028370213002, guid: 85e83888d108932449a1d916bf1ad032, type: 3}
-  m_PrefabInstance: {fileID: 219328027}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &295435189
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,91 +481,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d3863e226cdcf84cbea1f8fcac674c2, type: 3}
---- !u!1 &370255449
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 370255452}
-  - component: {fileID: 370255451}
-  - component: {fileID: 370255450}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &370255450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370255449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: c0d852ba76d6e0d4d8223548cc28e9a4, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1095e9a6-dd5b-4261-b87e-6e1620324805
-    m_ActionName: Game/Activate[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 27a9e83d-8de1-48bc-a224-debc85e53c2b
-    m_ActionName: Game/Deactivate[/Mouse/rightButton]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Game
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 219328028}
---- !u!114 &370255451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370255449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f1bd6a89f12c04c98e11e87c5a8b24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 219328028}
-  _playerInput: {fileID: 370255450}
-  _cardPicker: {fileID: 822738384}
---- !u!4 &370255452
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370255449}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.40176, y: 5.972849, z: -3.785694}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &558956119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -747,7 +657,7 @@ PrefabInstance:
     - target: {fileID: 378585214559269913, guid: 07ec1955592db5d59bba9567e5764959, type: 3}
       propertyPath: _gameManager
       value: 
-      objectReference: {fileID: 370255451}
+      objectReference: {fileID: 0}
     - target: {fileID: 378585214559269913, guid: 07ec1955592db5d59bba9567e5764959, type: 3}
       propertyPath: _cardRepository
       value: 
@@ -924,7 +834,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3603154678028233133, guid: 9de42cc01a89d274e972d0a97f180917, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3603154678028233133, guid: 9de42cc01a89d274e972d0a97f180917, type: 3}
       propertyPath: m_LocalScale.x
@@ -1753,7 +1663,7 @@ PrefabInstance:
       objectReference: {fileID: 1217031902}
     - target: {fileID: 8053032338672385220, guid: c6e2d91308e042540a1d82f640e3ddf0, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 8053032338672385220, guid: c6e2d91308e042540a1d82f640e3ddf0, type: 3}
       propertyPath: m_LocalPosition.x
