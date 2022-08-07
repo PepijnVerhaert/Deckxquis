@@ -52,6 +52,28 @@ public class EnemyControllerBehavior : MonoBehaviour
         _gameMangerBehavior.EnemiesReady();
     }
 
+    public void Update()
+    {
+        foreach (var behavior in _enemyBehaviors)
+        {
+            if (behavior.CardBehavior.Properties != null)
+            {
+                if (!behavior.IsAlive())
+                {
+                    behavior.gameObject.SetActive(false);
+                    _turnTrackerBehavior.EnemyDied(behavior.CardBehavior.Id);
+
+                    if (AreAllEnemiesDead())
+                    {
+                        // TODO: ENEMYCONTROLLER: delete all current enemies
+                        // TODO: ENEMYCONTROLLER: draw new player card
+                        // TODO: ENEMYCONTROLLER: draw new enemy cards
+                    }
+                }
+            }
+        }
+    }
+
     public void AddEnemy(EnemyBehavior enemyBehavior)
     {
         foreach (var pattern in _enemyPattern)
@@ -80,22 +102,10 @@ public class EnemyControllerBehavior : MonoBehaviour
             {
                 if (behavior.IsAlive())
                 {
+                    yield return new WaitForSeconds(_enemyTurnTime / 2f);
                     behavior.PlayTurn();
-                    if (!behavior.IsAlive())
-                    {
-                        behavior.gameObject.SetActive(false);
-                        // TODO: ENEMYCONTROLLER: enemy dies
-                        _turnTrackerBehavior.EnemyDied(id);
-                       
-                        if (AreAllEnemiesDead())
-                        {
-                            // TODO: ENEMYCONTROLLER: delete all current enemies
-                            // TODO: ENEMYCONTROLLER: draw new player card
-                            // TODO: ENEMYCONTROLLER: draw new enemy cards
-                        }
-                    }
                 }
-                yield return new WaitForSeconds(_enemyTurnTime);
+                yield return new WaitForSeconds(_enemyTurnTime / 2f);
                 behavior.DeclareIntent();
                 _turnTrackerBehavior.EndTurn();
                 break;
