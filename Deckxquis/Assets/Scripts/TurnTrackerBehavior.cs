@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class TurnTrackerBehavior : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class TurnTrackerBehavior : MonoBehaviour
     private GameMangerBehavior _gameMangerBehavior;
     private CardRepositoryBehaviour _cardRepositoryBehaviour;
     private CardBehavior[] _cards = new CardBehavior[8];
+    private Text[] _names = new Text[8];
 
     // REMOVE ENEMIES
     private string deadEnemy;
@@ -33,8 +35,13 @@ public class TurnTrackerBehavior : MonoBehaviour
         _cardRepositoryBehaviour = GameObject.Find("CardRepository").GetComponent<CardRepositoryBehaviour>();
         // Gather the visuals
         GameObject turns = gameObject.transform.GetChild(0).gameObject;
+        GameObject turn;
         for (int i = 0; i < 8; i++)
-            _cards[i] = turns.transform.GetChild(i).GetComponent<CardBehavior>();
+        {
+            turn = turns.transform.GetChild(i).gameObject;
+            _cards[i] = turn.transform.GetChild(0).GetComponent<CardBehavior>();
+            _names[i] = turn.transform.GetChild(1).GetComponentInChildren<Text>();
+        }
     }
 
     public void Update()
@@ -50,6 +57,7 @@ public class TurnTrackerBehavior : MonoBehaviour
             CardProperties fullProperties = _cardRepositoryBehaviour.GetCardById(_turnList[i]);
             _cards[i].SetProperties(fullProperties);
             _cards[i].Show(CardSide.Front);
+            _names[i].text = fullProperties.Name;
         }
     }
 
