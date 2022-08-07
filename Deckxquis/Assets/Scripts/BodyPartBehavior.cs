@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class BodyPartBehavior : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class BodyPartBehavior : MonoBehaviour
         Left,
         Right,
     }
+
+    [SerializeField]
+    Text _currentUsesText;
+    [SerializeField]
+    Text _totalUsesText;
 
     [SerializeField]
     private CardBehavior _cardBehavior;
@@ -53,6 +59,9 @@ public class BodyPartBehavior : MonoBehaviour
         _cardBehavior.SetProperties(cardProperties);
         _currentUses = cardProperties.Uses;
         _cardBehavior.Show(global::CardSide.Front);
+
+        _totalUsesText.text = cardProperties.Uses.ToString();
+        _currentUsesText.text = cardProperties.Uses.ToString();
     }
 
     public void UseBodyPart()
@@ -77,6 +86,7 @@ public class BodyPartBehavior : MonoBehaviour
     public void UsePassives()
     {
         --_currentUses;
+        _currentUsesText.text = _currentUses.ToString();
 
         _energyTrackerBehavior.useEnergy(_cardBehavior.EnergyCost);
         _healthTrackerBehavior.reduceHealth(_cardBehavior.HealthCost);
@@ -88,6 +98,8 @@ public class BodyPartBehavior : MonoBehaviour
         if (_currentUses <= 0)
         {
             OnBodyPartBroken(_cardBehavior.GetCardType, _cardSide);
+            _currentUsesText.text = String.Empty;
+            _totalUsesText.text = String.Empty;
         }
     }
 }
