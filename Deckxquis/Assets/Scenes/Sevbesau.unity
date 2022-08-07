@@ -580,18 +580,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyDecks
       objectReference: {fileID: 0}
-    - target: {fileID: 4613619846375881598, guid: af16005887ec842408686955984eb87c, type: 3}
-      propertyPath: m_Color.b
-      value: 0.24705882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4613619846375881598, guid: af16005887ec842408686955984eb87c, type: 3}
-      propertyPath: m_Color.g
-      value: 0.24705882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4613619846375881598, guid: af16005887ec842408686955984eb87c, type: 3}
-      propertyPath: m_Color.r
-      value: 0.42745098
-      objectReference: {fileID: 0}
     - target: {fileID: 8721165345551037830, guid: af16005887ec842408686955984eb87c, type: 3}
       propertyPath: m_Sprite
       value: 
