@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum CardSide {
     Front,
@@ -41,6 +42,10 @@ public class CardBehavior : MonoBehaviour
     [SerializeField]
     GameObject _emptyVisuals;
 
+    //text
+    [SerializeField]
+    Text _backTitle;
+
 
     public void Show(CardSide side) {
         switch (side) 
@@ -75,6 +80,8 @@ public class CardBehavior : MonoBehaviour
     private void SetCardVisuals()
     {
         _frontImage.sprite = Resources.Load<Sprite>(_properties.ImageName);
+
+        _backTitle.text = _properties.Name;
 
         switch (_properties.Type)
         {
