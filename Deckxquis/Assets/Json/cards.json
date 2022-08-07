@@ -379,8 +379,8 @@
       "EnergyCost": 0,
       "HealthCost": 0,
       "Energy": 0,
-      "Defence": 4,
-      "Attack": 4,
+      "Defence": 6,
+      "Attack": 6,
       "Uses": 25,
       "Health": 0
     }
