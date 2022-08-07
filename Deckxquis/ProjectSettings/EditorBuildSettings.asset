@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
-    guid: 9f82fc7b4c48399469839e3684c21b1a
+    path: Assets/Scenes/Nasus.unity
+    guid: d81f6a95b10914e4ab7218a37047adf1
   m_configObjects: {}
