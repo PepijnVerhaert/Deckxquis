@@ -31,8 +31,6 @@ public class EnemyControllerBehavior : MonoBehaviour
         _enemyDeckBehaviour = GameObject.Find("EnemyDecks").GetComponent<EnemyDeckBehaviour>();
         _enemyBehaviors = GetComponentsInChildren<EnemyBehavior>();
         _gameMangerBehavior = GameObject.Find("GameManager").GetComponent<GameMangerBehavior>();
-
-
     }
 
     public IEnumerator DrawEnemies()
@@ -98,6 +96,7 @@ public class EnemyControllerBehavior : MonoBehaviour
                     }
                 }
                 yield return new WaitForSeconds(_enemyTurnTime);
+                behavior.DeclareIntent();
                 _turnTrackerBehavior.EndTurn();
                 break;
             }
