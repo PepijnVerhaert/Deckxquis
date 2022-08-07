@@ -921,7 +921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1076346506333825004
 Transform:
   m_ObjectHideFlags: 0
@@ -1090,7 +1090,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 440c2ca5d4c261d4bae04e5319335afa, type: 3}
-  m_Color: {r: 0.426, g: 0.24690613, b: 0.24690613, a: 1}
+  m_Color: {r: 0.6793532, g: 0.735849, b: 0.5588287, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2063,10 +2063,16 @@ MonoBehaviour:
   _torsoBackImage: {fileID: 21300000, guid: 13644fa1c9259654f91fe299b0c1217c, type: 3}
   _legBackImage: {fileID: 21300000, guid: cc789d2734c761a43abc284ec5e2a7e6, type: 3}
   _enemyBackImage: {fileID: 21300000, guid: 229be84472ae7654eb30bd55e0986e4d, type: 3}
+  _frontBorderRenderer: {fileID: 5691904226598025620}
+  _backBorderRenderer: {fileID: 4054468213324097323}
   _frontVisuals: {fileID: 2143733659148468696}
   _backVisuals: {fileID: 5676961227612580089}
   _emptyVisuals: {fileID: 3120514831399937626}
   _backTitle: {fileID: 8021316656405581292}
+  _playerFrontColor: {r: 0.68235296, g: 0.6392157, b: 0.7647059, a: 1}
+  _enemyFrontColor: {r: 0.9137255, g: 0.972549, b: 0.7882353, a: 1}
+  _playerBackColor: {r: 0.2784314, g: 0.15686275, b: 0.5058824, a: 1}
+  _enemyBackColor: {r: 0.6784314, g: 0.7372549, b: 0.56078434, a: 1}
 --- !u!61 &2826721477451872139
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2542,7 +2548,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 440c2ca5d4c261d4bae04e5319335afa, type: 3}
-  m_Color: {r: 0.9622642, g: 0.5582948, b: 0.5582948, a: 1}
+  m_Color: {r: 0.9137255, g: 0.972549, b: 0.7882353, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2705,7 +2711,7 @@ SpriteRenderer:
   m_SortingLayerID: -1636880311
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 8d80649402d26054cb980c1b8f8e11fb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 229be84472ae7654eb30bd55e0986e4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3183,7 +3189,7 @@ SpriteRenderer:
   m_SortingLayerID: -1636880311
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 894923c71580f5c49be8806321490094, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a5c1d24151c62685a7736627052e4ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

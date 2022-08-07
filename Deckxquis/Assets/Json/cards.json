@@ -67,6 +67,58 @@
       "Health": 0
     },
     {
+      "Name": "Howling",
+      "ImageName": "Textures/Arms/Howling",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 2,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 6,
+      "Uses": 2,
+      "Health": 0
+    },
+    {
+      "Name": "Hypnotising",
+      "ImageName": "Textures/Arms/Hypnotising",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 2,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 6,
+      "Uses": 2,
+      "Health": 0
+    },
+    {
+      "Name": "Scratchy",
+      "ImageName": "Textures/Arms/Scratchy",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 2,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 6,
+      "Uses": 2,
+      "Health": 0
+    },
+    {
+      "Name": "Stabby",
+      "ImageName": "Textures/Arms/Stabby",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 2,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 6,
+      "Uses": 2,
+      "Health": 0
+    },
+    {
       "Name": "Clumsy",
       "ImageName": "Textures/Arms/Clumsy",
       "_Type": "Arm",
