@@ -23,17 +23,24 @@ public class GameMangerBehavior : MonoBehaviour
     private GameObject _hitObject;
 
     private TurnTrackerBehavior _turnTrackerBehavior;
+    private EnemyControllerBehavior _enemyController;
     
     public void Start()
     {
         _playerInput.actions["Activate"].performed += Activate;
         _playerInput.actions["Deactivate"].performed += Deactivate;
         _turnTrackerBehavior = GameObject.Find("TurnTracker").GetComponent<TurnTrackerBehavior>();
+        _enemyController = GameObject.Find("EnemyCharacter").GetComponent<EnemyControllerBehavior>();
     }
 
-    public void StartCombat()
+    public void PlayerReady()
     {
         _inputState = InputState.None;
+        StartCoroutine(_enemyController.DrawEnemies());
+    }
+
+    public void EnemiesReady()
+    {
         _turnTrackerBehavior.StartCombat();
     }
 

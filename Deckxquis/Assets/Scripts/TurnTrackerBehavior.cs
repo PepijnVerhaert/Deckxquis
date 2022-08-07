@@ -26,7 +26,7 @@ public class TurnTrackerBehavior : MonoBehaviour
     private void Start()
     {
         _playerBehaviour = GameObject.Find("PlayerCharacter").GetComponent<PlayerBehaviour>();
-        _enemyBehaviour = GameObject.Find("EnemyCard").GetComponent<EnemyControllerBehavior>();
+        _enemyBehaviour = GameObject.Find("EnemyCharacter").GetComponent<EnemyControllerBehavior>();
         _gameMangerBehavior = GameObject.Find("GameManager").GetComponent<GameMangerBehavior>();
     }
 
@@ -40,6 +40,12 @@ public class TurnTrackerBehavior : MonoBehaviour
         _playerId = playerId;
         _speedPerTurn.Add(playerId, speed);
         _accumulatedSpeed.Add(playerId, 100);
+    }
+
+    public void AddEnemy(string id, int speed)
+    {
+        _speedPerTurn.Add(id, speed);
+        _accumulatedSpeed.Add(id, 0);
     }
 
     public void FillTurnList()

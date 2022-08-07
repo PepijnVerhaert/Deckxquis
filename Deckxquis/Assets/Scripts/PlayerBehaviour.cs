@@ -104,7 +104,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 _isInitialized = true;
                 _turnTracker.SetPlayer(_head.Id, _head.Speed);
-                _gameMangerBehavior.StartCombat();
+                _gameMangerBehavior.PlayerReady();
             }
         }
     }

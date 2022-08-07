@@ -20,12 +20,35 @@ public class EnemyControllerBehavior : MonoBehaviour
     public Dictionary<string, int> EnemySpeed { get => _enemySpeed; }
 
     private TurnTrackerBehavior _turnTrackerBehavior;
+    private GameMangerBehavior _gameMangerBehavior;
+    private EnemyDeckBehaviour _enemyDeckBehaviour;
+    private CardPickerBehaviour _cardPicker;
+    private CardBehavior[] _cardBehaviors;
 
     [SerializeField] private float _enemyTurnTime = 2f;
 
     private void Start()
     {
         _turnTrackerBehavior = GameObject.Find("TurnTracker").GetComponent<TurnTrackerBehavior>();
+        _enemyDeckBehaviour = GameObject.Find("EnemyDecks").GetComponent<EnemyDeckBehaviour>();
+        _cardBehaviors = GetComponentsInChildren<CardBehavior>();
+        _gameMangerBehavior = GameObject.Find("GameManager").GetComponent<GameMangerBehavior>();
+    }
+
+    public IEnumerator DrawEnemies()
+    {
+        var enemyCards = _enemyDeckBehaviour.DrawCards(4);
+        yield return new WaitForSeconds(2f);
+
+        for (int i = 0; i < _cardBehaviors.Length; ++i)
+        {
+            _cardBehaviors[i].SetProperties(enemyCards[i]);
+            _cardBehaviors[i].Show(CardSide.Front);
+            _turnTrackerBehavior.AddEnemy(_cardBehaviors[i].Id, _cardBehaviors[i].Speed);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        _gameMangerBehavior.EnemiesReady();
     }
 
     public void AddEnemy(EnemyBehavior behavior)
