@@ -212,7 +212,6 @@
       "Health": 0
     },
 
-    
     {
       "Name": "Farmer",
       "ImageName": "Textures/Enemy/Farmer",
@@ -227,7 +226,6 @@
       "Health": 0
     },
 
-    
     {
       "Name": "Archer",
       "ImageName": "Textures/Enemy/Archer",
@@ -258,7 +256,7 @@
 
     {
       "Name": "Quizzard",
-      "ImageName": "Textures/Enemy/KingWizzard",
+      "ImageName": "Textures/Enemy/KingWizard",
       "_Type": "Enemy",
       "Speed": 20,
       "EnergyCost": 0,
