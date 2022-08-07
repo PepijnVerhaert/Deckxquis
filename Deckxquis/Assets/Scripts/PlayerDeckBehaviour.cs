@@ -20,10 +20,13 @@ public class PlayerDeckBehaviour : MonoBehaviour
     {
         CardType[] types = { CardType.Arm, CardType.Torso, CardType.Leg };
         GameObject visualOfType;
+        int cardsLeft;
         foreach (CardType type in types)
         {
+            cardsLeft = CardsLeft(type);
             _visuals.TryGetValue(type, out visualOfType);
-            visualOfType.SetActive(CardsLeft(type) > 0);
+            visualOfType.SetActive(cardsLeft > 0);
+            // TODO show the number
         }
     }
 
