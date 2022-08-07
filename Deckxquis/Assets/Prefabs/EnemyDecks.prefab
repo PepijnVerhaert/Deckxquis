@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dea7e4fd9180681e9ec884cd3ae0751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deckSizeText: {fileID: 2616155185186429363}
   _cardRepository: {fileID: 0}
 --- !u!1 &4467405526854925510
 GameObject:
