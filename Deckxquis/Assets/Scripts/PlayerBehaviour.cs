@@ -101,9 +101,17 @@ public class PlayerBehaviour : MonoBehaviour
 
     }
 
-    public void Update()
+    private void HideEmpty()
     {
+        if (_torso.IsEmpty) _torso.Hide();
+        if (_leftArm.IsEmpty) _leftArm.Hide();
+        if (_rightArm.IsEmpty) _rightArm.Hide();
+        if (_leftLeg.IsEmpty) _leftLeg.Hide();
+        if (_rightLeg.IsEmpty) _rightLeg.Hide();
+    }
 
+    private void PickBodyParts()
+    {
         if (HasBodyParts())
         {
             _isPicking = false;
@@ -121,34 +129,36 @@ public class PlayerBehaviour : MonoBehaviour
         }
         if (_torso.IsEmpty && _playerDeckBehaviour.CardsLeft(CardType.Torso) > 0)
         {
-            _torso.Hide();
             _isPicking = true;
             _cardPickerBehaviour.PickNewCard(CardType.Torso, PickContext.CardFromDeck);
         }
         if (_leftArm.IsEmpty && _playerDeckBehaviour.CardsLeft(CardType.Arm) > 0)
         {
-            _leftArm.Hide();
             _isPicking = true;
             _cardPickerBehaviour.PickNewCard(CardType.Arm, PickContext.CardFromDeck);
         }
         if (_rightArm.IsEmpty && _playerDeckBehaviour.CardsLeft(CardType.Arm) > 0)
         {
-            _rightArm.Hide();
             _isPicking = true;
             _cardPickerBehaviour.PickNewCard(CardType.Arm, PickContext.CardFromDeck);
         }
         if (_leftLeg.IsEmpty && _playerDeckBehaviour.CardsLeft(CardType.Leg) > 0)
         {
-            _leftLeg.Hide();
             _isPicking = true;
             _cardPickerBehaviour.PickNewCard(CardType.Leg, PickContext.CardFromDeck);
         }
         if (_rightLeg.IsEmpty && _playerDeckBehaviour.CardsLeft(CardType.Leg) > 0)
         {
-            _rightLeg.Hide();
             _isPicking = true;
             _cardPickerBehaviour.PickNewCard(CardType.Leg, PickContext.CardFromDeck);
         }
+    }
+
+    public void Update()
+    {
+        HideEmpty();
+        PickBodyParts();
+
         if (!_isInitialized && HasBodyParts())
         {
             _isInitialized = true;
