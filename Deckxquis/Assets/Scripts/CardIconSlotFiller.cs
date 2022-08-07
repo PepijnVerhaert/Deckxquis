@@ -34,6 +34,129 @@ public class CardIconSlotFiller : MonoBehaviour
     [SerializeField]
     private Sprite _defenceSprite;
 
+    public void SetCustomCardIcons(int energyCost, int healthCost, int energy, int health, int attack, int defence)
+    {
+        //set loss
+        int newHealthCost = healthCost;
+        int newEnergyCost = energyCost;
+        for (int i = 0; i < _frontCostSlots.Length; i++)
+        {
+            if (newHealthCost > 0)
+            {
+                _frontCostSlots[i].enabled = true;
+                _frontCostSlots[i].sprite = _healthSprite;
+                --newHealthCost;
+            }
+            else if (newEnergyCost > 0)
+            {
+                _frontCostSlots[i].enabled = true;
+                _frontCostSlots[i].sprite = _energySprite;
+                --newEnergyCost;
+            }
+            else
+            {
+                _frontCostSlots[i].enabled = false;
+            }
+        }
+
+        newHealthCost = healthCost;
+        newEnergyCost = energyCost;
+        for (int i = 0; i < _backCostSlots.Length; i++)
+        {
+            if (newHealthCost > 0)
+            {
+                _backCostSlots[i].enabled = true;
+                _backCostSlots[i].sprite = _healthSprite;
+                --newHealthCost;
+            }
+            else if (newEnergyCost > 0)
+            {
+                _backCostSlots[i].enabled = true;
+                _backCostSlots[i].sprite = _energySprite;
+                --newEnergyCost;
+            }
+            else
+            {
+                _backCostSlots[i].enabled = false;
+            }
+        }
+
+
+        //set gain
+        int newAttack = attack;
+        int newDefence = defence;
+        int newHealth = health;
+        int newEnergy = energy;
+        for (int i = 0; i < _frontGainSlots.Length; i++)
+        {
+            if (newAttack > 0)
+            {
+                _frontGainSlots[i].enabled = true;
+                _frontGainSlots[i].sprite = _attackSprite;
+                --newAttack;
+            }
+            else if (newDefence > 0)
+            {
+                _frontGainSlots[i].enabled = true;
+                _frontGainSlots[i].sprite = _defenceSprite;
+                --newDefence;
+            }
+            else if (newHealth > 0)
+            {
+                _frontGainSlots[i].enabled = true;
+                _frontGainSlots[i].sprite = _healthSprite;
+                --newHealth;
+            }
+            else if (newEnergy > 0)
+            {
+                _frontGainSlots[i].enabled = true;
+                _frontGainSlots[i].sprite = _energySprite;
+                --newEnergy;
+            }
+            else
+            {
+                _frontGainSlots[i].enabled = false;
+            }
+        }
+
+        newAttack = attack;
+        newDefence = defence;
+        newHealth = health;
+        newEnergy = energy;
+        for (int i = 0; i < _backGainSlots.Length; i++)
+        {
+            if (newAttack > 0)
+            {
+                _backGainSlots[i].enabled = true;
+                _backGainSlots[i].sprite = _attackSprite;
+                --newAttack;
+            }
+            else if (newDefence > 0)
+            {
+                _backGainSlots[i].enabled = true;
+                _backGainSlots[i].sprite = _defenceSprite;
+                --newDefence;
+            }
+            else if (newHealth > 0)
+            {
+                _backGainSlots[i].enabled = true;
+                _backGainSlots[i].sprite = _healthSprite;
+                --newHealth;
+            }
+            else if (newEnergy > 0)
+            {
+                _backGainSlots[i].enabled = true;
+                _backGainSlots[i].sprite = _energySprite;
+                --newEnergy;
+            }
+            else
+            {
+                _backGainSlots[i].enabled = false;
+            }
+        }
+
+    }
+
     public void SetSlotsToCardTop(bool topSlots)
     {
         Vector3 position = new Vector3(0f, 0f, 0f );
