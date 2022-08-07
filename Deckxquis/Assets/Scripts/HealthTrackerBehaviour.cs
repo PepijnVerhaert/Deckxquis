@@ -42,6 +42,11 @@ public class HealthTrackerBehaviour : MonoBehaviour
         SetDefenceTokenVisibility();
     }
     
+    public void reduceHealth(int amount) {
+        _healthLevel -= amount;
+        SetHealthTokenAvailability();
+    }
+    
     public void heal(int amount) {
         _healthLevel += amount;
         _healthLevel = Mathf.Min(_healthLevel, _maxHealthLevel);
