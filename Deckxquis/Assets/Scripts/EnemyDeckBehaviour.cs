@@ -33,9 +33,9 @@ public class EnemyDeckBehaviour : MonoBehaviour
         List<CardProperties> drawn = new List<CardProperties>();
         for (int i = 0; i < amount; i++)
         {
-            int nextIndex = _lastEnemyIndex + i;
-            if (nextIndex == _enemyCardProperties.Length) break;
-            drawn.Add(_enemyCardProperties[nextIndex]);
+            if (_lastEnemyIndex == _enemyCardProperties.Length) break;
+            drawn.Add(_enemyCardProperties[_lastEnemyIndex]);
+            _lastEnemyIndex++;
         }
         return drawn.ToArray();
     }
