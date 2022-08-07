@@ -14,7 +14,7 @@ public class HeadBehavior : MonoBehaviour
 
     public int MaxHealth
     {
-        get { return _cardBehavior.Health; }
+        get { return _cardBehavior.HealthCost; }
     }
 
     public int MaxEnergy

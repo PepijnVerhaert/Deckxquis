@@ -43,7 +43,9 @@ public class PlayerBehaviour : MonoBehaviour
         if (_isPickingHead) {
             _head.SetCardProperties(cardProperties);
             HealthTracker.MaxHealthLevel = _head.MaxHealth;
+            HealthTracker.removeDefence();
             EnergyTracker.MaxBaseEnergyLevel = _head.MaxEnergy;
+            EnergyTracker.resetEnergy();
             _isPickingHead = false;
             _pickedHead = true;
         }  else  {
