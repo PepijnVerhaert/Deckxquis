@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDeckBehaviour : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class PlayerDeckBehaviour : MonoBehaviour
     private Dictionary<CardType, List<CardProperties>> _playerCards;
     private Dictionary<CardType, GameObject> _visuals;
     System.Random random = new System.Random();
+
+    [SerializeField]
+    private Text _armText;
+    [SerializeField]
+    private Text _torsoText;
+    [SerializeField]
+    private Text _legText;
 
     void Start()
     {
@@ -26,8 +34,10 @@ public class PlayerDeckBehaviour : MonoBehaviour
             cardsLeft = CardsLeft(type);
             _visuals.TryGetValue(type, out visualOfType);
             visualOfType.SetActive(cardsLeft > 0);
-            // TODO show the number
         }
+        _armText.text = CardsLeft(CardType.Arm).ToString();
+        _torsoText.text = CardsLeft(CardType.Torso).ToString();
+        _legText.text = CardsLeft(CardType.Leg).ToString();
     }
 
     private void InitializeVisuals()
