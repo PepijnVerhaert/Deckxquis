@@ -258,7 +258,7 @@
 
     {
       "Name": "Quizzard",
-      "ImageName": "Textures/Enemy/KingWizzard",
+      "ImageName": "Textures/Enemy/KingWizard",
       "_Type": "Enemy",
       "Speed": 20,
       "EnergyCost": 0,

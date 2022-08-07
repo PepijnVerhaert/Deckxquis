@@ -192,6 +192,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 852595956, guid: af16005887ec842408686955984eb87c, type: 3}
+      propertyPath: _cardRepository
+      value: 
+      objectReference: {fileID: 1382826400}
     - target: {fileID: 1759147474679252701, guid: af16005887ec842408686955984eb87c, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -398,9 +402,17 @@ PrefabInstance:
       propertyPath: _cardRepository
       value: 
       objectReference: {fileID: 1382826400}
+    - target: {fileID: 6012901233696973479, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6131588058376731819, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
       propertyPath: m_Name
       value: PlayerDecks
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803942282186481059, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8613515111047544769, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
       propertyPath: m_RootOrder
@@ -453,6 +465,10 @@ PrefabInstance:
     - target: {fileID: 8613515111047544769, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686742029243018919, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
