@@ -26,6 +26,7 @@ public class HeadBehavior : MonoBehaviour
     {
         get { return _cardBehavior.Speed; }
     }
+    public string Id { get => _cardBehavior.Id; }
 
     public void SetHead(CardBehavior cardBehavior)
     {

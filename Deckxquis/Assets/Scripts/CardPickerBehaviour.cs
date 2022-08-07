@@ -59,7 +59,7 @@ public class CardPickerBehaviour : MonoBehaviour
     public IEnumerator handleCardPick(CardBehavior cardBehavior) {
         CardProperties cardProperties = cardBehavior.Properties;
         cardBehavior.Show(CardSide.Front);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
        
         switch (_context)
         {

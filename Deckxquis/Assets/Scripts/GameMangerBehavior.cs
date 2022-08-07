@@ -6,23 +6,15 @@ using UnityEngine.Assertions;
 
 public enum InputState {
     CardSelect,
-    ActionSelect,
+    PlayerSelect,
     EnemySelect,
     EnemyTurn,
     None,
 }
 
-public enum GameState
-{
-    CardSelect,
-    PlayerTurn,
-    EnemyTurn,
-}
-
 public class GameMangerBehavior : MonoBehaviour
 {
     private InputState _inputState;
-    private GameState _gameState = GameState.CardSelect;
     public Ray _ray = new Ray();
     public RaycastHit2D _hit;
     [SerializeField] public Camera _camera;
@@ -38,7 +30,13 @@ public class GameMangerBehavior : MonoBehaviour
         _playerInput.actions["Deactivate"].performed += Deactivate;
         _turnTrackerBehavior = GameObject.Find("TurnTracker").GetComponent<TurnTrackerBehavior>();
     }
-    
+
+    public void StartCombat()
+    {
+        _inputState = InputState.None;
+        _turnTrackerBehavior.StartCombat();
+    }
+
     public void SetInputState(InputState state) 
     {
         _inputState = state;
@@ -51,12 +49,14 @@ public class GameMangerBehavior : MonoBehaviour
         {
             case InputState.CardSelect:
                 return "Picker";
-            case InputState.ActionSelect:
+            case InputState.PlayerSelect:
                 return "Player";
             case InputState.EnemySelect:
                 return "Enemy";
             case InputState.EnemyTurn:
                 return "Turn";
+            case InputState.None:
+                break;
             default:
                 Debug.Log("boze error message!");
                 break;
@@ -80,9 +80,9 @@ public class GameMangerBehavior : MonoBehaviour
                     _hit = hitResult;
                     _hitObject = _hit.collider.gameObject;
 
-                    if (_gameState == GameState.PlayerTurn && _hitObject.CompareTag("EndTurn"))
+                    if (_inputState == InputState.PlayerSelect && _hitObject.CompareTag("EndTurn"))
                     {
-                        _gameState = GameState.EnemyTurn;
+                        _inputState = InputState.None;
                         Debug.Log("EndTurn");
                         //_turnTrackerBehavior.EndTurn();
                         return;
@@ -97,7 +97,7 @@ public class GameMangerBehavior : MonoBehaviour
                             _inputState = InputState.None;
                             StartCoroutine(_cardPicker.handleCardPick(clickedCardBehavior));
                             break;
-                        case InputState.ActionSelect:
+                        case InputState.PlayerSelect:
                             // TODO if turntracker is clicked -> notify turnTracker
                             // TODO if player -> handle picked action
                             break;

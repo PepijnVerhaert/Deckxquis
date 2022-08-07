@@ -12,8 +12,9 @@ public class TurnTrackerBehavior : MonoBehaviour
 
     private string _playerId;
 
-    [SerializeField] private PlayerBehaviour _playerBehaviour;
-    [SerializeField] private EnemyControllerBehavior _enemyBehaviour;
+    private PlayerBehaviour _playerBehaviour;
+    private EnemyControllerBehavior _enemyBehaviour;
+    private GameMangerBehavior _gameMangerBehavior;
 
     // REMOVE ENEMIES
     private string deadEnemy;
@@ -26,8 +27,12 @@ public class TurnTrackerBehavior : MonoBehaviour
     {
         _playerBehaviour = GameObject.Find("PlayerCharacter").GetComponent<PlayerBehaviour>();
         _enemyBehaviour = GameObject.Find("EnemyCard").GetComponent<EnemyControllerBehavior>();
+        _gameMangerBehavior = GameObject.Find("GameManager").GetComponent<GameMangerBehavior>();
+    }
 
-        FillTurnList();
+    public void StartCombat()
+    {
+        StartTurn();
     }
 
     public void SetPlayer(string playerId, int speed)
@@ -82,7 +87,7 @@ public class TurnTrackerBehavior : MonoBehaviour
         }
         _imageList.Clear();
 
-        // TODO: set player turn to 100
+        _accumulatedSpeed[_playerId] = 100;
         FillTurnList();
     }
 
@@ -97,14 +102,25 @@ public class TurnTrackerBehavior : MonoBehaviour
     public void EndTurn()
     {
         _imageList.RemoveAt(0);
+        StartTurn();
+    }
+
+    private void StartTurn()
+    {
         FillTurnList();
+
+        if (_imageList.Count == 0)
+        {
+            return;
+        }
 
         if (_imageList[0] == _playerId)
         {
-            // TODO: TURNTRACKER: Give turn to player
+            _gameMangerBehavior.SetInputState(InputState.PlayerSelect);
         }
         else
         {
+            _gameMangerBehavior.SetInputState(InputState.EnemyTurn);
             StartCoroutine(_enemyBehaviour.GiveTurn(_imageList[0]));
         }
     }
