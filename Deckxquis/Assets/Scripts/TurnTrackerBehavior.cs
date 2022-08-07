@@ -19,8 +19,6 @@ public class TurnTrackerBehavior : MonoBehaviour
     private CardBehavior[] _cards = new CardBehavior[8];
     private Text[] _names = new Text[8];
 
-    private bool _showfront = false;
-
     // REMOVE ENEMIES
     private string deadEnemy;
     private bool IsMatchingEnemy(string s)
@@ -55,6 +53,8 @@ public class TurnTrackerBehavior : MonoBehaviour
             _names[i].text = "";
         }
 
+        if (!ShowTurnTracker()) return;
+
         for (int i = 0; i < _turnList.Count; i++)
         {
             CardProperties fullProperties = _cardRepositoryBehaviour.GetCardById(_turnList[i]);
@@ -67,7 +67,6 @@ public class TurnTrackerBehavior : MonoBehaviour
 
     public void StartCombat()
     {
-        _showfront = true;
         StartTurn();
     }
 
@@ -82,6 +81,16 @@ public class TurnTrackerBehavior : MonoBehaviour
     {
         _speedPerTurn.Add(id, speed);
         _accumulatedSpeed.Add(id, 0);
+    }
+
+    private bool ShowTurnTracker()
+    {
+        if (_turnList.Count <= 1) return false;
+        string firstEl = _turnList[0];
+        bool isSame = true;
+        for (int i = 1; i < _turnList.Count; i++)
+            if (_turnList[i] != firstEl) isSame = false;
+        return !isSame;
     }
 
     private void FillTurnList()
