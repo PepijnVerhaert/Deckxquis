@@ -46,12 +46,13 @@ public class TurnTrackerBehavior : MonoBehaviour
 
     public void Update()
     {
-        // Hide each card
-        foreach (CardBehavior card in _cards)
+        // Hide each card and text
+        for (int i = 0; i < _cards.Length; i++)
         {
-            card.Show(CardSide.Back);
+            _cards[i].Show(CardSide.None);
+            _names[i].text = "";
         }
-        // Set the correct visual for each turn we have
+        // Set the correct visual and name for each turn we have
         for (int i = 0; i < _turnList.Count; i++)
         {
             CardProperties fullProperties = _cardRepositoryBehaviour.GetCardById(_turnList[i]);

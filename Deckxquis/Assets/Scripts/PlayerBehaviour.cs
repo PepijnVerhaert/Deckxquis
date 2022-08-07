@@ -25,7 +25,6 @@ public class PlayerBehaviour : MonoBehaviour
     public int Speed { get => calculateSpeed(); }
 
     private bool _isPicking = false;
-    private bool _isPickingHead = false;
     private bool _pickedHead = false;
 
     private bool _isInitialized = false;
@@ -38,7 +37,8 @@ public class PlayerBehaviour : MonoBehaviour
         _playerDeckBehaviour = GameObject.Find("PlayerDecks").GetComponent<PlayerDeckBehaviour>();
     }
 
-    private int calculateSpeed() {
+    private int calculateSpeed()
+    {
         int totalSpeed = 0;
         totalSpeed += _head.Speed;
         totalSpeed += _torso.Speed;
@@ -48,8 +48,9 @@ public class PlayerBehaviour : MonoBehaviour
         totalSpeed += _rightLeg.Speed;
         return totalSpeed;
     }
-     
-    public void AddBodyPart(CardProperties cardProperties) {
+
+    public void AddBodyPart(CardProperties cardProperties)
+    {
         switch (cardProperties.Type)
         {
             case CardType.Head:
@@ -58,7 +59,6 @@ public class PlayerBehaviour : MonoBehaviour
                 HealthTracker.removeDefence();
                 EnergyTracker.MaxBaseEnergyLevel = _head.MaxEnergy;
                 EnergyTracker.resetEnergy();
-                _isPickingHead = false;
                 _pickedHead = true;
                 break;
             case CardType.Arm:
@@ -66,7 +66,7 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     _leftArm.setCardProperties(cardProperties);
                 }
-                else if(_rightArm.IsEmpty)
+                else if (_rightArm.IsEmpty)
                 {
                     _rightArm.setCardProperties(cardProperties);
                 }
@@ -94,14 +94,15 @@ public class PlayerBehaviour : MonoBehaviour
         _healthTracker.removeDefence();
         _energyTracker.resetEnergy();
     }
-    
+
     private bool HasBodyParts()
     {
         return (_pickedHead && !_torso.IsEmpty && !_leftArm.IsEmpty && !_rightArm.IsEmpty && !_leftLeg.IsEmpty && !_rightLeg.IsEmpty);
 
     }
 
-    public void Update() {
+    public void Update()
+    {
 
         if (HasBodyParts())
         {
@@ -115,7 +116,6 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (!_pickedHead)
         {
-            _isPickingHead = true;
             _isPicking = true;
             _cardPickerBehaviour.PickNewCard(CardType.Head, PickContext.CardFromDeck);
         }
@@ -149,7 +149,7 @@ public class PlayerBehaviour : MonoBehaviour
             _isPicking = true;
             _cardPickerBehaviour.PickNewCard(CardType.Leg, PickContext.CardFromDeck);
         }
-        if (!_isInitialized && _pickedHead && !_torso.IsEmpty && !_leftArm.IsEmpty && !_rightArm.IsEmpty && !_leftLeg.IsEmpty && !_rightLeg.IsEmpty)
+        if (!_isInitialized && HasBodyParts())
         {
             _isInitialized = true;
             _turnTracker.SetPlayer(_head.Id, _head.Speed);
