@@ -1,19 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    [SerializeField]
-    Text _healthAmount;
-
-    [SerializeField]
-    Text _defenceAmount;
-
-    [SerializeField]
-    Text _name;
-
     private CardBehavior _cardBehavior;
 
     private List<bool> _attackPattern;
@@ -21,8 +11,6 @@ public class EnemyBehavior : MonoBehaviour
 
     private int _currentDefence;
     private int _currentHealth;
-    private int _lastFrameHealth;
-    private bool _dead;
 
     private HealthTrackerBehaviour _healthTrackerBehaviour;
     public CardBehavior CardBehavior
@@ -45,33 +33,6 @@ public class EnemyBehavior : MonoBehaviour
     {
         _cardBehavior = GetComponentInChildren<CardBehavior>();
         _healthTrackerBehaviour = GameObject.Find("HealthTracker").GetComponent<HealthTrackerBehaviour>();
-    }
-
-    private void Update()
-    {
-        if(_lastFrameHealth > 0 && _currentHealth <= 0 && !_dead)
-        {
-            _name.text = string.Empty;
-            _healthAmount.text = string.Empty;
-            _defenceAmount.text = string.Empty;
-        }
-        _lastFrameHealth = _currentHealth;
-
-        if(_currentHealth <= 0)
-        {
-            _dead = true;
-        }
-        else
-        {
-            _dead = false;
-        }
-
-        if(!_dead)
-        {
-            _name.text = _cardBehavior.Name;
-            _healthAmount.text = _currentHealth.ToString();
-            _defenceAmount.text = _currentDefence.ToString();
-        }
     }
 
     public void PlayTurn()

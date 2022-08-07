@@ -32,14 +32,6 @@ public class CardBehavior : MonoBehaviour
     [SerializeField]
     Sprite _enemyBackImage;
 
-    //borders
-    [SerializeField]
-    SpriteRenderer _frontBorderRenderer;
-
-    [SerializeField]
-    SpriteRenderer _backBorderRenderer;
-
-
     //visuals
     [SerializeField]
     GameObject _frontVisuals;
@@ -53,19 +45,6 @@ public class CardBehavior : MonoBehaviour
     //text
     [SerializeField]
     Text _backTitle;
-
-    //Colors
-    [SerializeField]
-    private Color _playerFrontColor;
-
-    [SerializeField]
-    private Color _enemyFrontColor;
-
-    [SerializeField]
-    private Color _playerBackColor;
-
-    [SerializeField]
-    private Color _enemyBackColor;
 
 
     public void Show(CardSide side) {
@@ -124,24 +103,6 @@ public class CardBehavior : MonoBehaviour
             default:
                 break;
         }
-
-        switch (_properties.Type)
-        {
-            case CardType.Head:
-            case CardType.Arm:
-            case CardType.Torso:
-            case CardType.Leg:
-                _frontBorderRenderer.color = _playerFrontColor;
-                _backBorderRenderer.color = _playerBackColor;
-                break;
-            case CardType.Enemy:
-                _frontBorderRenderer.color = _enemyFrontColor;
-                _backBorderRenderer.color = _enemyBackColor;
-                break;
-            default:
-                break;
-        }
-
 
         CardIconSlotFiller slotFiller = GetComponent<CardIconSlotFiller>();
         slotFiller.SetSlotsCorrect();
