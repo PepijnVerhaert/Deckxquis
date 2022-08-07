@@ -7,14 +7,15 @@ public class TurnTrackerBehavior : MonoBehaviour
 {
     private Dictionary<string, float> _speedPerTurn = new Dictionary<string, float>();
     private Dictionary<string, float> _accumulatedSpeed = new Dictionary<string, float>();
-    private List<string> _imageList = new List<string>();
+    private List<string> _turnList = new List<string>();
     private int _imageAmount = 8;
-
     private string _playerId;
 
     private PlayerBehaviour _playerBehaviour;
     private EnemyControllerBehavior _enemyBehaviour;
     private GameMangerBehavior _gameMangerBehavior;
+    private CardRepositoryBehaviour _cardRepositoryBehaviour;
+    private CardBehavior[] _cards = new CardBehavior[8];
 
     // REMOVE ENEMIES
     private string deadEnemy;
@@ -25,9 +26,31 @@ public class TurnTrackerBehavior : MonoBehaviour
 
     private void Start()
     {
+        // Gather the data sources
         _playerBehaviour = GameObject.Find("PlayerCharacter").GetComponent<PlayerBehaviour>();
         _enemyBehaviour = GameObject.Find("EnemyCharacter").GetComponent<EnemyControllerBehavior>();
         _gameMangerBehavior = GameObject.Find("GameManager").GetComponent<GameMangerBehavior>();
+        _cardRepositoryBehaviour = GameObject.Find("CardRepository").GetComponent<CardRepositoryBehaviour>();
+        // Gather the visuals
+        GameObject turns = gameObject.transform.GetChild(0).gameObject;
+        for (int i = 0; i < 8; i++)
+            _cards[i] = turns.transform.GetChild(i).GetComponent<CardBehavior>();
+    }
+
+    public void Update()
+    {
+        // Hide each card
+        foreach (CardBehavior card in _cards)
+        {
+            card.Show(CardSide.Back);
+        }
+        // Set the correct visual for each turn we have
+        for (int i = 0; i < _turnList.Count; i++)
+        {
+            CardProperties fullProperties = _cardRepositoryBehaviour.GetCardById(_turnList[i]);
+            _cards[i].SetProperties(fullProperties);
+            _cards[i].Show(CardSide.Front);
+        }
     }
 
     public void StartCombat()
@@ -39,7 +62,7 @@ public class TurnTrackerBehavior : MonoBehaviour
     {
         _playerId = playerId;
         _speedPerTurn.Add(playerId, speed);
-        _accumulatedSpeed.Add(playerId, 100);
+        _accumulatedSpeed.Add(playerId, 50);
     }
 
     public void AddEnemy(string id, int speed)
@@ -50,7 +73,7 @@ public class TurnTrackerBehavior : MonoBehaviour
 
     public void FillTurnList()
     {
-        while (_speedPerTurn.Count != 0 && _imageList.Count < _imageAmount)
+        while (_speedPerTurn.Count != 0 && _turnList.Count < _imageAmount)
         {
             var descendingAccSpeedVec = _accumulatedSpeed.OrderByDescending(pair => pair.Value);
 
@@ -59,20 +82,20 @@ public class TurnTrackerBehavior : MonoBehaviour
                 if (_accumulatedSpeed[accSpeed.Key] >= 100)
                 {
                     _accumulatedSpeed[accSpeed.Key] -= 100;
-                    _imageList.Add(accSpeed.Key);
+                    _turnList.Add(accSpeed.Key);
                 }
                 else
                 {
                     break;
                 }
 
-                if (_imageList.Count == _imageAmount)
+                if (_turnList.Count == _imageAmount)
                 {
                     break;
                 }
             }
 
-            if (_imageList.Count == _imageAmount)
+            if (_turnList.Count == _imageAmount)
             {
                 break;
             }
@@ -91,7 +114,7 @@ public class TurnTrackerBehavior : MonoBehaviour
         {
             _accumulatedSpeed[turn.Key] = 0;
         }
-        _imageList.Clear();
+        _turnList.Clear();
 
         _accumulatedSpeed[_playerId] = 100;
         FillTurnList();
@@ -100,14 +123,14 @@ public class TurnTrackerBehavior : MonoBehaviour
     public void EnemyDied(string id)
     {
         deadEnemy = id;
-        _imageList.RemoveAll(IsMatchingEnemy);
+        _turnList.RemoveAll(IsMatchingEnemy);
 
         FillTurnList();
     }
 
     public void EndTurn()
     {
-        _imageList.RemoveAt(0);
+        _turnList.RemoveAt(0);
         StartTurn();
     }
 
@@ -115,19 +138,14 @@ public class TurnTrackerBehavior : MonoBehaviour
     {
         FillTurnList();
 
-        if (_imageList.Count == 0)
-        {
-            return;
-        }
-
-        if (_imageList[0] == _playerId)
+        if (_turnList[0] == _playerId)
         {
             _gameMangerBehavior.SetInputState(InputState.PlayerSelect);
         }
         else
         {
             _gameMangerBehavior.SetInputState(InputState.EnemyTurn);
-            StartCoroutine(_enemyBehaviour.GiveTurn(_imageList[0]));
+            StartCoroutine(_enemyBehaviour.GiveTurn(_turnList[0]));
         }
     }
 }

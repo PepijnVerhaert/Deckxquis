@@ -93,6 +93,13 @@ public class CardRepositoryBehaviour : MonoBehaviour
         return picked.ToArray();
     }
 
+    public CardProperties GetCardById(string id)
+    {
+        foreach (CardProperties cardProperties in _cardsProperties)
+            if (cardProperties.Id == id) return cardProperties;
+        throw new System.Exception("No card with id: " + id);
+    }
+
     public void SetInPlay(CardProperties cardProperties)
     {
         _inPlay.Add(cardProperties.Id);
