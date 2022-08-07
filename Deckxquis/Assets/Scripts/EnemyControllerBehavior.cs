@@ -46,6 +46,9 @@ public class EnemyControllerBehavior : MonoBehaviour
             _enemyBehaviors[i].SetProperties(enemyCards[i]);
             _enemyBehaviors[i].CardBehavior.Show(CardSide.Front);
 
+            _enemyBehaviors[i].gameObject.SetActive(true);
+
+
             AddEnemy(_enemyBehaviors[i]);
 
             _turnTrackerBehavior.AddEnemy(_enemyBehaviors[i].CardBehavior.Id, _enemyBehaviors[i].CardBehavior.Speed);

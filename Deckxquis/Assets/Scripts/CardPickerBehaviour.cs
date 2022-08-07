@@ -26,6 +26,8 @@ public class CardPickerBehaviour : MonoBehaviour
 
     public bool IsPicking { get => _isPicking; }
 
+    private bool _newWave = false;
+
     public void Update()
     {
         if (_queue.Count > 0 && !_isPicking)
@@ -96,14 +98,16 @@ public class CardPickerBehaviour : MonoBehaviour
     
     public IEnumerator handleCardPick(CardBehavior cardBehavior) {
         CardProperties cardProperties = cardBehavior.Properties;
-      
+
+        int queueCount = _queue.Count;
+
         switch (_context)
         {
             case PickContext.NewCard:
                 _playerDeck.AddCard(cardProperties);
                 _cardRepository.SetInPlay(cardProperties);
                 _context = PickContext.None;
-                _gameManager.PickedCardFromRepository();
+                _newWave = true;
                 break;
             case PickContext.CardFromDeck:
                 cardBehavior.Show(CardSide.Front);
@@ -123,5 +127,11 @@ public class CardPickerBehaviour : MonoBehaviour
 
         ClearCards();
         _isPicking = false;
+
+        if (_newWave && queueCount == 0)
+        {
+            _gameManager.PickedCardFromRepository();
+            _newWave = false;
+        }
     }
 }

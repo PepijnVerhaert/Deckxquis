@@ -57,20 +57,22 @@ public class GameMangerBehavior : MonoBehaviour
 
     public void EnemiesReady()
     {
+        _turnTrackerBehavior.RecalculateTurnList();
         _turnTrackerBehavior.StartCombat();
         _enemyController.IsInCombat = true;
+
     }
 
     public void WaveDone()
     {
+        _turnTrackerBehavior.AllEnemiesDied();
         int random = Random.Range(1, 4);
         _cardPicker.PickNewCard((CardType)random, PickContext.NewCard);
     }
 
     public void PickedCardFromRepository()
     {
-        _enemyController.DrawEnemies();
-        _turnTrackerBehavior.RecalculateTurnList();
+        StartCoroutine(_enemyController.DrawEnemies());
     }
 
     public void SetInputState(InputState state) 

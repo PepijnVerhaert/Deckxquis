@@ -19,6 +19,8 @@ public class TurnTrackerBehavior : MonoBehaviour
     private CardBehavior[] _cards = new CardBehavior[8];
     private Text[] _names = new Text[8];
 
+    private bool _showfront = false;
+
     // REMOVE ENEMIES
     private string deadEnemy;
     private bool IsMatchingEnemy(string s)
@@ -52,7 +54,7 @@ public class TurnTrackerBehavior : MonoBehaviour
             _cards[i].Show(CardSide.None);
             _names[i].text = "";
         }
-        // Set the correct visual and name for each turn we have
+
         for (int i = 0; i < _turnList.Count; i++)
         {
             CardProperties fullProperties = _cardRepositoryBehaviour.GetCardById(_turnList[i]);
@@ -60,10 +62,12 @@ public class TurnTrackerBehavior : MonoBehaviour
             _cards[i].Show(CardSide.Front);
             _names[i].text = fullProperties.Name;
         }
+
     }
 
     public void StartCombat()
     {
+        _showfront = true;
         StartTurn();
     }
 
@@ -80,9 +84,9 @@ public class TurnTrackerBehavior : MonoBehaviour
         _accumulatedSpeed.Add(id, 0);
     }
 
-    public void FillTurnList()
+    private void FillTurnList()
     {
-        while (_speedPerTurn.Count != 0 && _turnList.Count < _imageAmount)
+        while (_turnList.Count < _imageAmount)
         {
             var descendingAccSpeedVec = _accumulatedSpeed.OrderByDescending(pair => pair.Value);
 
@@ -125,7 +129,6 @@ public class TurnTrackerBehavior : MonoBehaviour
         }
         _turnList.Clear();
 
-        _accumulatedSpeed[_playerId] = 100;
         FillTurnList();
     }
 
@@ -133,6 +136,8 @@ public class TurnTrackerBehavior : MonoBehaviour
     {
         deadEnemy = id;
         _turnList.RemoveAll(IsMatchingEnemy);
+        _speedPerTurn.Remove(id);
+        _accumulatedSpeed.Remove(id);
 
         FillTurnList();
     }
@@ -162,5 +167,10 @@ public class TurnTrackerBehavior : MonoBehaviour
     public bool IsPlayerTurn()
     {
         return _playerId != null && _turnList[0] == _playerId;
+    }
+
+    public void AllEnemiesDied()
+    {
+        _turnList.Clear();
     }
 }
