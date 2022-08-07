@@ -91,11 +91,10 @@ public class GameMangerBehavior : MonoBehaviour
                     {
                         _inputState = InputState.None;
                         Debug.Log("EndTurn");
-                        //_turnTrackerBehavior.EndTurn();
+                        _turnTrackerBehavior.EndTurn();
                         return;
                     }
 
-                    Debug.Log("HIT!");
                     CardBehavior clickedCardBehavior = _hitObject.GetComponent<CardBehavior>();
 
                     switch (_inputState)
@@ -107,9 +106,20 @@ public class GameMangerBehavior : MonoBehaviour
                         case InputState.PlayerSelect:
                             // TODO if turntracker is clicked -> notify turnTracker
                             // TODO if player -> handle picked action
+                            BodyPartBehavior bodyPartBehavior;
+                            bool foundComponent = _hitObject.transform.parent.gameObject.TryGetComponent(out bodyPartBehavior);
+                            if (foundComponent)
+                            {
+                                bodyPartBehavior.UseBodyPart();
+                            }
+
+                            break;
+                        case InputState.EnemySelect:
                             break;
                         case InputState.EnemyTurn:
                             // TODO if turntracker is clicked -> notify turnTracker
+                            break;
+                        default:
                             break;
                     }
                     return;
@@ -122,5 +132,9 @@ public class GameMangerBehavior : MonoBehaviour
     {
         _hitObject = null;
         Debug.Log("UNHIT!");
+        if (_inputState == InputState.EnemySelect)
+        {
+            _inputState = InputState.PlayerSelect;
+        }
     }
 }

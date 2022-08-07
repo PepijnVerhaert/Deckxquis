@@ -15,6 +15,8 @@ public class BodyPartBehavior : MonoBehaviour
     [SerializeField] private Side _cardSide = Side.Unassigned;
     private int _currentUses = -1;
 
+    private GameMangerBehavior _gameManagerBehavior;
+
     // ACTIONS
     public Action<float> UseEnergy = (float amount) => {};
     public Action<float> UseHealth = (float amount) => {};
@@ -32,22 +34,41 @@ public class BodyPartBehavior : MonoBehaviour
 
     public bool IsEmpty { get => _cardBehavior.Properties == null || _cardBehavior.Uses <= 0; }
     public CardType GetCardType { get => _cardBehavior.GetCardType; }
-    
+
+    public void Start()
+    {
+        _gameManagerBehavior = GameObject.Find("GameManager").GetComponent<GameMangerBehavior>();
+    }
+
     public void setCardProperties(CardProperties cardProperties) {
         _cardBehavior.SetProperties(cardProperties);
         _cardBehavior.Show(global::CardSide.Front);
     }
 
-    void UseBodyPart()
+    public void UseBodyPart()
+    {
+        if (_cardBehavior.Attack > 0)
+        {
+            _gameManagerBehavior.SetInputState(InputState.EnemySelect);
+            GiveAttack(_cardBehavior.Attack);
+
+        }
+        else
+        {
+            UsePassives();
+        }
+    }
+
+    private void UsePassives()
     {
         --_currentUses;
-        
+
         UseEnergy(_cardBehavior.EnergyCost);
         UseHealth(_cardBehavior.HealthCost);
+
         GiveEnergy(_cardBehavior.Energy);
         GiveHealth(_cardBehavior.Health);
         GiveDefence(_cardBehavior.Defence);
-        GiveAttack(_cardBehavior.Attack);
 
         if (_currentUses <= 0)
         {

@@ -48,13 +48,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPattern:
-  - _name: 
+  - _name: Textures/Enemy/Farmer
     _boolList: 0100
-  - _name: 
+  - _name: Textures/Enemy/Archer
     _boolList: 000100
-  - _name: 
+  - _name: Textures/Enemy/Knight
     _boolList: 00010100
-  - _name: 
+  - _name: Textures/Enemy/KingWizard
     _boolList: 0100
   _enemyTurnTime: 2
 --- !u!1001 &3046740125450932997

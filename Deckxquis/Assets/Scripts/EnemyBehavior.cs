@@ -15,17 +15,23 @@ public class EnemyBehavior : MonoBehaviour
     public CardBehavior CardBehavior
     {
         get { return _cardBehavior; }
-        set 
-        {
-            _cardBehavior = value;
-            _currentDefence = 0;
-            _currentHealth = _cardBehavior.Uses;
-        }
+    }
+
+    public void SetProperties(CardProperties properties)
+    {
+        _cardBehavior.SetProperties(properties);
+        _currentDefence = 0;
+        _currentHealth = _cardBehavior.Uses;
     }
 
     public int CurrentDefence { get => _currentDefence; }
     public int CurrentHealth { get => _currentHealth; }
     public List<bool> AttackPattern { set => _attackPattern = value; }
+
+    private void Start()
+    {
+        _cardBehavior = GetComponentInChildren<CardBehavior>();
+    }
 
     public void PlayTurn()
     {

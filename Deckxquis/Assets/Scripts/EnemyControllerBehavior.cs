@@ -13,7 +13,6 @@ public class PatternList
 public class EnemyControllerBehavior : MonoBehaviour
 {
     [SerializeField] private List<PatternList> _enemyPattern = new List<PatternList>();
-    private List<EnemyBehavior> _behaviors = new List<EnemyBehavior>();
 
     private Dictionary<string, int> _enemySpeed = new Dictionary<string, int>();
 
@@ -24,6 +23,7 @@ public class EnemyControllerBehavior : MonoBehaviour
     private EnemyDeckBehaviour _enemyDeckBehaviour;
     private CardPickerBehaviour _cardPicker;
     private CardBehavior[] _cardBehaviors;
+    private EnemyBehavior[] _enemyBehaviors;
 
     [SerializeField] private float _enemyTurnTime = 2f;
 
@@ -32,6 +32,7 @@ public class EnemyControllerBehavior : MonoBehaviour
         _turnTrackerBehavior = GameObject.Find("TurnTracker").GetComponent<TurnTrackerBehavior>();
         _enemyDeckBehaviour = GameObject.Find("EnemyDecks").GetComponent<EnemyDeckBehaviour>();
         _cardBehaviors = GetComponentsInChildren<CardBehavior>();
+        _enemyBehaviors = GetComponentsInChildren<EnemyBehavior>();
         _gameMangerBehavior = GameObject.Find("GameManager").GetComponent<GameMangerBehavior>();
     }
 
@@ -40,29 +41,33 @@ public class EnemyControllerBehavior : MonoBehaviour
         var enemyCards = _enemyDeckBehaviour.DrawCards(4);
         yield return new WaitForSeconds(2f);
 
-        for (int i = 0; i < _cardBehaviors.Length; ++i)
+        for (int i = 0; i < _enemyBehaviors.Length; ++i)
         {
-            _cardBehaviors[i].SetProperties(enemyCards[i]);
-            _cardBehaviors[i].Show(CardSide.Front);
-            _turnTrackerBehavior.AddEnemy(_cardBehaviors[i].Id, _cardBehaviors[i].Speed);
+            _enemyBehaviors[i].SetProperties(enemyCards[i]);
+            _enemyBehaviors[i].CardBehavior.Show(CardSide.Front);
+
+            AddEnemy(_enemyBehaviors[i]);
+
+            _turnTrackerBehavior.AddEnemy(_enemyBehaviors[i].CardBehavior.Id, _enemyBehaviors[i].CardBehavior.Speed);
             yield return new WaitForSeconds(0.5f);
         }
 
         _gameMangerBehavior.EnemiesReady();
     }
 
-    public void AddEnemy(EnemyBehavior behavior)
+    public void AddEnemy(EnemyBehavior enemyBehavior)
     {
         foreach (var pattern in _enemyPattern)
         {
-            if (pattern._name == behavior.name)
+            if (pattern._name == enemyBehavior.CardBehavior.ImageName)
             {
-                behavior.AttackPattern = pattern._boolList;
+                enemyBehavior.AttackPattern = pattern._boolList;
                 break;
             }
         }
-        _behaviors.Add(behavior);
-        _enemySpeed.Add(behavior.CardBehavior.Id, behavior.CardBehavior.Speed);
+
+        enemyBehavior.DeclareIntent();
+        _enemySpeed.Add(enemyBehavior.CardBehavior.Id, enemyBehavior.CardBehavior.Speed);
     }
 
     public Dictionary<string, int> GetEnemySpeeds()
@@ -72,7 +77,7 @@ public class EnemyControllerBehavior : MonoBehaviour
 
     public IEnumerator GiveTurn(string id)
     {
-        foreach (var behavior in _behaviors)
+        foreach (var behavior in _enemyBehaviors)
         {
             if (behavior.CardBehavior.Id == id)
             {
@@ -102,7 +107,7 @@ public class EnemyControllerBehavior : MonoBehaviour
 
     public bool AreAllEnemiesDead()
     {
-        foreach (var behavior in _behaviors)
+        foreach (var behavior in _enemyBehaviors)
         {
             if (behavior.IsAlive())
             {

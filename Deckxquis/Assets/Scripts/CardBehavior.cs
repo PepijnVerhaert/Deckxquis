@@ -137,4 +137,5 @@ public class CardBehavior : MonoBehaviour
     public CardType GetCardType { get => _properties.Type; }
     public string Id { get => _properties.Id; }
     public string ImageName { get => _properties.ImageName; }
+    public string Name { get => _properties.Name; }
 }
