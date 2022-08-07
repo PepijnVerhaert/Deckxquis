@@ -11,8 +11,17 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private BodyPartBehavior _rightArm;
     [SerializeField] private BodyPartBehavior _leftLeg;
     [SerializeField] private BodyPartBehavior _rightLeg;
+
+    private HealthTrackerBehaviour _healthTracker = null;
+    public HealthTrackerBehaviour HealthTracker { get { if (_healthTracker == null) _healthTracker = FindObjectOfType<HealthTrackerBehaviour>(); return _healthTracker; } }
+
+    private EnergyTrackerBehaviour _energyTracker = null;
+    public EnergyTrackerBehaviour EnergyTracker { get { if (_energyTracker == null) _energyTracker = FindObjectOfType<EnergyTrackerBehaviour>(); return _energyTracker; } }
+
+    
     
     public int Speed { get => calculateSpeed(); }
+
     private BodyPartBehavior _pickingPart;
     private bool _isPicking = false;
     private bool _isPickingHead = false;
@@ -33,6 +42,8 @@ public class PlayerBehaviour : MonoBehaviour
     public void AddBodyPart(CardProperties cardProperties) {
         if (_isPickingHead) {
             _head.SetCardProperties(cardProperties);
+            HealthTracker.MaxHealthLevel = _head.MaxHealth;
+            EnergyTracker.MaxBaseEnergyLevel = _head.MaxEnergy;
             _isPickingHead = false;
             _pickedHead = true;
         }  else  {
