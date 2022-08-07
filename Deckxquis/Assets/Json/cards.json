@@ -4,10 +4,10 @@
       "Name": "Barry",
       "ImageName": "Textures/Heads/Barry",
       "_Type": "Head",
-      "Speed": 10,
+      "Speed": 12,
       "EnergyCost": 0,
       "HealthCost": 8,
-      "Energy": 6,
+      "Energy": 8,
       "Defence": 0,
       "Attack": 0,
       "Uses": 0,
@@ -17,10 +17,10 @@
       "Name": "Jacob",
       "ImageName": "Textures/Heads/Jacob",
       "_Type": "Head",
-      "Speed": 20,
+      "Speed": 22,
       "EnergyCost": 0,
       "HealthCost": 10,
-      "Energy": 3,
+      "Energy": 4,
       "Defence": 0,
       "Attack": 0,
       "Uses": 0,
@@ -30,7 +30,7 @@
       "Name": "Ophelia",
       "ImageName": "Textures/Heads/Ophelia",
       "_Type": "Head",
-      "Speed": 30,
+      "Speed": 35,
       "EnergyCost": 0,
       "HealthCost": 6,
       "Energy": 2,
@@ -56,6 +56,58 @@
     {
       "Name": "Squishy",
       "ImageName": "Textures/Arms/Squishy",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 2,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 6,
+      "Uses": 2,
+      "Health": 0
+    },
+    {
+      "Name": "Howling",
+      "ImageName": "Textures/Arms/Howling",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 2,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 6,
+      "Uses": 2,
+      "Health": 0
+    },
+    {
+      "Name": "Hypnotising",
+      "ImageName": "Textures/Arms/Hypnotising",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 2,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 6,
+      "Uses": 2,
+      "Health": 0
+    },
+    {
+      "Name": "Scratchy",
+      "ImageName": "Textures/Arms/Scratchy",
+      "_Type": "Arm",
+      "Speed": 0,
+      "EnergyCost": 1,
+      "HealthCost": 2,
+      "Energy": 0,
+      "Defence": 0,
+      "Attack": 6,
+      "Uses": 2,
+      "Health": 0
+    },
+    {
+      "Name": "Stabby",
+      "ImageName": "Textures/Arms/Stabby",
       "_Type": "Arm",
       "Speed": 0,
       "EnergyCost": 1,
@@ -331,7 +383,7 @@
 
     
     {
-      "Name": "Farmer",
+      "Name": "Josh",
       "ImageName": "Textures/Enemy/Farmer",
       "_Type": "Enemy",
       "Speed": 20,
@@ -402,7 +454,7 @@
 
     
     {
-      "Name": "Archer",
+      "Name": "Arthur",
       "ImageName": "Textures/Enemy/Archer",
       "_Type": "Enemy",
       "Speed": 25,
@@ -416,7 +468,7 @@
     },
 
     {
-      "Name": "Knight",
+      "Name": "Jack",
       "ImageName": "Textures/Enemy/Knight",
       "_Type": "Enemy",
       "Speed": 15,
@@ -430,16 +482,16 @@
     },
 
     {
-      "Name": "Quizzard",
+      "Name": "The Mighty Quizzard",
       "ImageName": "Textures/Enemy/KingWizard",
       "_Type": "Enemy",
-      "Speed": 20,
+      "Speed": 15,
       "EnergyCost": 0,
       "HealthCost": 0,
       "Energy": 0,
-      "Defence": 3,
-      "Attack": 3,
-      "Uses": 25,
+      "Defence": 6,
+      "Attack": 6,
+      "Uses": 15,
       "Health": 0
     }
   ]
