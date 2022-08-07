@@ -569,6 +569,14 @@ PrefabInstance:
       propertyPath: _cardRepository
       value: 
       objectReference: {fileID: 524563961}
+    - target: {fileID: 5058134519056743573, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 11160fa5bf888f2c58dfc3b592cc65c6, type: 3}
+    - target: {fileID: 5450140154345915403, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 11160fa5bf888f2c58dfc3b592cc65c6, type: 3}
     - target: {fileID: 6012901233696973479, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -581,6 +589,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8530235543687951926, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 11160fa5bf888f2c58dfc3b592cc65c6, type: 3}
     - target: {fileID: 8613515111047544769, guid: 04b9f273c1bb92b43b2ff59580707395, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1171,6 +1183,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -5.21
       objectReference: {fileID: 0}
+    - target: {fileID: 2616155185186429363, guid: af16005887ec842408686955984eb87c, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 11160fa5bf888f2c58dfc3b592cc65c6, type: 3}
     - target: {fileID: 4071513264271797247, guid: af16005887ec842408686955984eb87c, type: 3}
       propertyPath: m_Name
       value: EnemyDecks

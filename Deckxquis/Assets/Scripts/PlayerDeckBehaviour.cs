@@ -79,7 +79,6 @@ public class PlayerDeckBehaviour : MonoBehaviour
                 _cardRepository.SetInPlay(properties);
             }
         }
-
     }
 
     public int CardsLeft(CardType type)
